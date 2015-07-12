@@ -1070,7 +1070,7 @@ style "notebook_tab_label" {
 style "combobox_entry"
 {
   xthickness = 3
-  ythickness = 4
+  ythickness = 3
 
   engine "pixmap" {
 
@@ -1308,7 +1308,7 @@ style "spinbutton" {
   bg[NORMAL] = @bg_color
 
   xthickness = 6
-  ythickness = 4
+  ythickness = 3
 
   engine "pixmap" {
 
