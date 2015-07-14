@@ -504,6 +504,7 @@ $_dot_color: $selected_bg_color;
   @each $b_type, $b_color in (suggested-action, $suggested_color),
                              (destructive-action, $destructive_color) {
     &.#{$b_type} {
+      background-clip: border-box;
       color: $selected_fg_color;
       border-color: $b_color;
       background-color: $b_color;
@@ -2586,10 +2587,7 @@ GtkVolumeButton.button { padding: 8px; }
       border-radius: 2px;
       box-shadow: 0 1px 3px 1px $_wm_border;
     }
-    &.message-dialog {
-      border-radius: 3px;
-      box-shadow: 0 1px 6px $_wm_border;
-    }
+    &.message-dialog { border-radius: 3px; }
   }
 }
 
