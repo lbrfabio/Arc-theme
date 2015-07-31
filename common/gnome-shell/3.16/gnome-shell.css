@@ -387,7 +387,7 @@ StScrollBar {
 .polkit-dialog-user-root-label {
   color: #F27835; }
 
-.polkit-dialog-user-user-icon {
+.polkit-dialog-user-icon {
   border-radius: 2px;
   background-size: contain;
   width: 48px;
