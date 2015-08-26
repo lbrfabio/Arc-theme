@@ -110,7 +110,7 @@ StEntry {
   selection-background-color: $selected_bg_color;
   selected-color: $selected_fg_color;
   transition-duration: 300ms;
-  border-radius: 20px;
+  border-radius: 3px;
   background-gradient-direction: none !important;
 
   @include entry(normal);

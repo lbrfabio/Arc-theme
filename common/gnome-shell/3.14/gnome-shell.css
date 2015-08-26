@@ -134,7 +134,7 @@ StEntry {
   selection-background-color: #5294E2;
   selected-color: #ffffff;
   transition-duration: 300ms;
-  border-radius: 20px;
+  border-radius: 3px;
   background-gradient-direction: none !important;
   color: #5c616c;
   background-color: #ffffff;
