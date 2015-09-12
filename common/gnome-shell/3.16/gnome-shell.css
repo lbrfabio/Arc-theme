@@ -589,7 +589,7 @@ StScrollBar {
 #panel {
   font-weight: bold;
   height: 1.9em;
-  /*border-image: url("common-assets/panel/panel.svg") 1 1 1 1;*/ }
+  border-image: url("common-assets/panel/panel.svg") 1 1 1 1; }
   #panel.dynamic-top-bar-white-btn {
     border-image: none; }
   #panel.unlock-screen,
@@ -598,7 +598,7 @@ StScrollBar {
     background-color: transparent;
     border-image: none; }
   #panel:overview {
-  /*border-image: url("common-assets/panel/panel-overview.svg") 1 1 1 1;*/ }
+    border-image: url("common-assets/panel/panel-overview.svg") 1 1 1 1; }
   #panel #panelLeft, #panel #panelCenter {
     spacing: 8px; }
   #panel .panel-corner {
@@ -914,16 +914,13 @@ StScrollBar {
 .message {
   padding: 4px;
   color: #5c616c;
-  background-color: #fcfdfd;
-  border: 1px solid #cfd6e6; }
+  border-image: url("light-assets/misc/message.svg") 9 9 9 9; }
   .message:hover, .message:focus {
     color: #5c616c;
-    background-color: #fcfdfd;
-    border: 1px solid #5294E2; }
+    border-image: url("light-assets/misc/message-hover.svg") 9 9 9 9; }
   .message:active {
     color: #ffffff;
-    background-color: #5294E2;
-    border: 1px solid #5294E2; }
+    border-image: url("light-assets/misc/message-active.svg") 9 9 9 9; }
   .message-icon-bin {
     padding: 8px 0px 8px 8px; }
     .message-icon-bin:rtl {
@@ -1396,10 +1393,9 @@ StScrollBar {
   margin: 30px;
   padding: 10px;
   color: #5c616c;
-  background-color: #f9fafb;
+  background-color: transparent;
   border: 1px solid transparent;
-  border-radius:2px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2); }
+  border-image: url("light-assets/menu/menu.svg") 9 9 9 9; }
   .notification-banner .notification-icon,
   .notification-banner:hover .notification-icon,
   .notification-banner:focus .notification-icon {
