@@ -63,7 +63,7 @@ stage {
     color: #ffffff;
     background-color: #5294E2;
     border: 1px solid #5294E2;
-    box-shadow: inset 0 2px 4px #5294E2; }
+    box-shadow: inset 0 1px rgba(82, 148, 226, 0.05); }
   .button:insensitive, .notification-banner .notification-button:insensitive,
   .hotplug-notification-item:insensitive {
     text-shadow: 0 1px rgba(255, 255, 255, 0);
@@ -774,7 +774,7 @@ StScrollBar {
     color: #ffffff;
     background-color: #5294E2;
     border: 1px solid #5294E2;
-    box-shadow: inset 0 2px 4px #5294E2; }
+    box-shadow: inset 0 1px rgba(82, 148, 226, 0.05); }
 
 .datemenu-today-button .date-label {
   font-size: 1.5em; }
@@ -1016,7 +1016,8 @@ StScrollBar {
   spacing: 12px; }
 
 #overview {
-  spacing: 24px; }
+  spacing: 24px;
+  /*background: rgba(60, 64, 78, 0.55);*/ }
 
 .overview-controls {
   padding-bottom: 32px; }
@@ -1306,11 +1307,11 @@ StScrollBar {
   text-align: center; }
 
 .app-well-app.app-folder > .overview-icon {
-  background-color: rgba(46, 50, 60, 0.95);
-  border: 1px solid rgba(37, 40, 49, 0.95); }
+  background-color: rgba(35, 38, 46, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.45); }
 
 .app-well-app.app-folder:hover > .overview-icon {
-  background-color: rgba(71, 76, 92, 0.95); }
+  background-color: rgba(60, 64, 78, 0.95); }
 
 .app-well-app.app-folder:active > .overview-icon, .app-well-app.app-folder:checked > .overview-icon {
   background-color: #5294E2;
@@ -1321,8 +1322,8 @@ StScrollBar {
 
 .app-folder-popup {
   -arrow-border-radius: 2px;
-  -arrow-background-color: rgba(46, 50, 60, 0.95);
-  -arrow-border-color: rgba(37, 40, 49, 0.95);
+  -arrow-background-color: rgba(35, 38, 46, 0.95);
+  -arrow-border-color: rgba(0, 0, 0, 0.45);
   -arrow-border-width: 1px;
   -arrow-base: 5;
   -arrow-rise: 5; }
@@ -1665,7 +1666,7 @@ StScrollBar {
         color: #ffffff;
         background-color: #5294E2;
         border: 1px solid #5294E2;
-        box-shadow: inset 0 2px 4px #5294E2; }
+        box-shadow: inset 0 1px rgba(82, 148, 226, 0.05); }
       .login-dialog .modal-dialog-button:default:insensitive {
         text-shadow: 0 1px rgba(255, 255, 255, 0);
         color: rgba(92, 97, 108, 0.55);

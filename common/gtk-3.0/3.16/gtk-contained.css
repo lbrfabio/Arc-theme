@@ -2215,6 +2215,10 @@ GtkCalendar {
     background-image: none; }
     GtkCalendar.button:hover, GtkCalendar.button:focus:hover {
       color: #5c616c; }
+    GtkCalendar.button:insensitive, GtkCalendar.button:focus:insensitive {
+      color: rgba(92, 97, 108, 0.55);
+      background-color: transparent;
+      background-image: none; }
   GtkCalendar.highlight {
     color: alpha(currentColor,0.55); }
 
@@ -3293,7 +3297,7 @@ UnityPanelWidget,
   box-shadow: none; }
   UnityPanelWidget:backdrop,
   .unity-panel:backdrop {
-    color: #abb6c5; }
+    color: #bdc6d1; }
 
 .unity-panel.menubar.menuitem:hover,
 .unity-panel.menubar .menuitem *:hover {
