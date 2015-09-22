@@ -245,7 +245,7 @@ StScrollBar {
     padding: 14px 10px;
     background: none;
     border: none;
-    border-image: url("common-assets/misc/button-box.svg") 9 9 9 9;
+    border-image: url("#{$asset_path}/misc/button-box.svg") 9 9 9 9;
 
     .button {
       padding-top: 0;
@@ -256,7 +256,10 @@ StScrollBar {
     }
   }
 
-  .run-dialog-entry { width: 21em;}
+  .run-dialog-entry {
+    width: 21em;
+    caret-color: $fg_color;
+  }
   .run-dialog-error-box {
     padding-top: 5px;
     spacing: 5px;
@@ -609,10 +612,12 @@ StScrollBar {
 }
 
 .popup-separator-menu-item {
+  -gradient-height: 0px;
   //-margin-horizontal: 24px;
   height: 2px; //not really the whole box
   margin: 10px 0px;
   background-color: transparent;
+  background-gradient-direction: none !important;
   border: none;
 	border-image: url("common-assets/menu/menu-separator.svg") 1 1 1 1;
 }
@@ -860,7 +865,7 @@ StScrollBar {
 
     &:active, &:overview, &:focus, &:checked {
       color: $selected_fg_color;
-      background:$selected_bg_color, url("misc/null.svg");
+      background:$selected_bg_color, url("common-assets/misc/null.svg");
       border-image: none;
       box-shadow: none;
       border-bottom-width: 1px;
@@ -1097,7 +1102,7 @@ StScrollBar {
 .calendar-today:hover {
   font-weight: bold;
   color: $selected_fg_color;
-  background: $selected_bg_color, url("misc/null.svg");
+  background: $selected_bg_color, url("common-assets/misc/null.svg");
   border-width: 0;
 }
 

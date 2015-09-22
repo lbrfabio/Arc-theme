@@ -270,38 +270,27 @@ GtkFlowBox .grid-child {
     }
   }
 
-  &.error {
-    color: white;
-    border-color: $error_color;
-    background-image: linear-gradient(to bottom, mix($error_color, $base_color, 80%));
-    &:focus {
-      background-image: linear-gradient(to bottom, $error_color);
-      color: white;
-    }
-    &:selected, &:selected:focus {
-      background-color: white;
-      color: $error_color;
-    }
-  }
+  @each $e_type, $e_color in (warning, $warning_color),
+                             (error, $error_color) {
+    &.#{$e_type} {
+      color: $selected_fg_color;
+      border-color: if($variant=='light', $e_color, $entry_border);
+      background-image: linear-gradient(to bottom, mix($e_color, $base_color, 60%));
 
-  &.warning {
-    color: white;
-    border-color: $warning_color;
-    background-image: linear-gradient(to bottom, mix($warning_color, $base_color, 80%));
-    &:focus {
-      background-image: linear-gradient(to bottom, $warning_color);
-      color: white;
-    }
-    &:selected, &:selected:focus {
-      background-color: white;
-      color: $warning_color;
+      &:focus {
+        color: $selected_fg_color;
+        background-image: linear-gradient(to bottom, $e_color);
+        box-shadow: none;
+      }
+      &:selected, &:selected:focus {
+        background-color: $selected_fg_color;
+        color: $e_color;
+      }
     }
   }
 
   &.image { // entry icons colors
     color: mix($fg_color,$base_color,80%);
-    &:hover { color: $fg_color; }
-    &:active { color: $selected_bg_color; }
   }
 
   .linked.vertical > & { //FIXME comment stuff and make the whole thing smarter.
@@ -486,6 +475,7 @@ $_dot_color: $selected_bg_color;
       @extend %linked;
     }
     &:active, &:checked {
+      background-clip: padding-box;
       @include button(osd-active);
       @extend %linked;
     }
@@ -1044,12 +1034,15 @@ GtkComboBox {
   border-width: 0 0 1px;
   border-style: solid;
   border-radius: 0;
-  border-color: $header_border;
+  border-color: opacify($header_border, 1);
 
   color: $header_fg;
   background-color: opacify($header_bg, 1);
 
-  .csd & { background-color: $header_bg; }  // Transparent header-bars only in csd windows
+  .csd & {  // Transparent header-bars only in csd windows
+    background-color: $header_bg;
+    border-color: $header_border;
+  }
 
   &:backdrop {
     color: transparentize($header_fg, 0.3);
@@ -1138,8 +1131,12 @@ GtkComboBox {
 
   .maximized & {
     background-color: opacify($header_bg, 1);
+    border-color: opacify($header_border, 1);
 
-    &:backdrop { background-color: opacify($header_bg_backdrop, 1); }
+    &:backdrop {
+      background-color: opacify($header_bg_backdrop, 1);
+      border-color: opacify($header_border, 1);
+    }
   }
 }
 
@@ -1215,6 +1212,24 @@ GtkComboBox {
       border-color: $selected_bg_color;
       background-image: none;
       background-color: transparent;
+    }
+
+    @each $e_type, $e_color in (warning, $warning_color),
+                               (error, $error_color) {
+      &.#{$e_type} {
+        color: $selected_fg_color;
+        border-color: if($darker=='false' and $variant=='light', $e_color, $header_entry_border);
+        background-image: linear-gradient(to bottom, mix($e_color, $header_bg, 60%));
+
+        &:focus {
+          color: $selected_fg_color;
+          background-image: linear-gradient(to bottom, $e_color);
+        }
+        &:selected, &:selected:focus {
+          background-color: $selected_fg_color;
+          color: $e_color;
+        }
+      }
     }
   }
 
@@ -1891,33 +1906,25 @@ GtkSwitch {
   }
 }
 
-@each $i,$j in ('',''), ('.list-row:selected ','-selected') {
+@each $k,$l in ('',''),
+               (':active','-active'),
+               (':insensitive','-insensitive'),
+               (':active:insensitive','-active-insensitive') {
 
-  @each $k,$l in ('',''),
-                 (':active','-active'),
-                 (':insensitive','-insensitive'),
-                 (':active:insensitive','-active-insensitive') {
+  // load switch troughs from .png files in assets directory
 
-    // load switch troughs from .png files in assets directory
+  GtkSwitch.trough#{$k} {
+    background-image: -gtk-scaled(url("assets/switch#{$l}#{$asset_suffix}.png"),url("assets/switch#{$l}#{$asset_suffix}@2.png"));
+  }
 
-    #{$i}GtkSwitch.trough#{$k} {
-      background-image: -gtk-scaled(url("assets/switch#{$l}#{$asset_suffix}.png"),url("assets/switch#{$l}#{$asset_suffix}@2.png"));
-    }
+  .list-row:selected GtkSwitch.trough#{$k},
+  GtkInfoBar GtkSwitch.trough#{$k} {
+    background-image: -gtk-scaled(url("assets/switch#{$l}-selected.png"),url("assets/switch#{$l}-selected@2.png"));
+  }
 
-    .list-row:selected GtkSwitch.trough#{$k} {
-      background-image: -gtk-scaled(url("assets/switch#{$l}-selected.png"),url("assets/switch#{$l}-selected@2.png"));
-    }
-
-    .header-bar GtkSwitch.trough#{$k},
-    .primary-toolbar GtkSwitch.trough#{$k} {
-      background-image: -gtk-scaled(url("assets/switch#{$l}-header#{$darker_asset_suffix}.png"),url("assets/switch#{$l}-header#{$darker_asset_suffix}@2.png"));
-    }
-
-    // load switch sliders from .png files in assets directory
-
-    //#{$i}GtkSwitch.slider#{$k} {
-    //  background-image: -gtk-scaled(url("assets/switch-slider#{$l}#{$j}#{$asset_suffix}.png"),url("assets/switch-slider#{$l}#{$j}#{$asset_suffix}@2.png"));
-    //}
+  .header-bar GtkSwitch.trough#{$k},
+  .primary-toolbar GtkSwitch.trough#{$k} {
+    background-image: -gtk-scaled(url("assets/switch#{$l}-header#{$darker_asset_suffix}.png"),url("assets/switch#{$l}-header#{$darker_asset_suffix}@2.png"));
   }
 }
 
@@ -1946,7 +1953,8 @@ GtkSwitch {
     // too similar in luminosity to the selected background color, hence
     // we need special casing.
     GtkTreeView.view.#{$w}#{$s}:selected,
-    .list-row:selected .#{$w}#{$s} {
+    .list-row:selected .#{$w}#{$s},
+    GtkInfoBar .#{$w}#{$s} {
       -gtk-icon-source: -gtk-scaled(url("assets/#{$a}#{$as}-selected.png"),
                                     url("assets/#{$a}#{$as}-selected@2.png"));
     }
@@ -2022,8 +2030,9 @@ GtkCheckButton.text-button, GtkRadioButton.text-button {
         border-color: darken($selected_bg_color, 10%);
       }
     }
-    //selected list-row sliders
-    .list-row:selected & {
+    //selected list-row and infobar sliders
+    .list-row:selected &,
+    GtkInfoBar & {
       background-image: linear-gradient(to bottom, $selected_fg_color);
       border-color: $selected_fg_color;
 
@@ -2069,8 +2078,9 @@ GtkCheckButton.text-button, GtkRadioButton.text-button {
       }
       &:insensitive {  }
     }
-    // troughs in selected list-rows
-    .list-row:selected & {
+    // troughs in selected list-rows and infobars
+    .list-row:selected &,
+    GtkInfoBar & {
       background-image: linear-gradient(to bottom, transparentize(black, 0.8));
 
       &.highlight {
@@ -2112,6 +2122,8 @@ GtkProgressBar {
   &.osd {
     background-color: $selected_bg_color;
   }
+  .list-row:selected &,
+  GtkInfoBar & { background-color: $selected_fg_color; }
 }
 
 .osd .scale.progressbar {
@@ -2130,6 +2142,8 @@ GtkProgressBar.trough {
     box-shadow: none;
     //FIXME: there is a margin on top
   }
+  .list-row:selected &,
+  GtkInfoBar & { background-color: transparentize(black, 0.8); }
 }
 
 /*************
@@ -2286,7 +2300,7 @@ GtkScrolledWindow {
       &:insensitive { @extend %undecorated_button; }
     }
     &:hover { @include button(osd-hover); }
-    &:active, &:checked { @include button(osd-active); }
+    &:active, &:checked { @include button(osd-active); background-clip: padding-box; }
     &:insensitive { @include button(osd-insensitive);
     }
   }
