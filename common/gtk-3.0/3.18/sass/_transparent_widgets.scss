@@ -97,33 +97,6 @@ MarlinViewWindow {
   .pane-separator { background-color: $dark_sidebar_border; }
 }
 
-%dark_sidebar_scrollbar {
-
-  &.overlay-indicator:not(.dragging):not(.hovering) .slider {
-    background-color: lighten($dark_sidebar_fg, 15%);
-    border: 1px solid transparentize(black, 0.7);
-  }
-
-  // trough coloring
-  .trough {
-    background-color: transparentize(black, 0.8);
-    border: none;
-  }
-
-  // slider coloring
-  .slider {
-    background-color: transparentize(lighten($dark_sidebar_fg, 15%), 0.3);
-
-    &:hover { background-color: lighten($dark_sidebar_fg, 20%); }
-
-    &:prelight:active { background-color: $selected_bg_color; }
-
-    &:insensitive {
-      background-color: transparent;
-    }
-  }
-}
-
 GtkFileChooserDialog {
 
   &.background.csd, &.background { background-color: $dark_sidebar_bg }
@@ -154,36 +127,37 @@ GtkFileChooserDialog {
   }
 }
 
-// Gedit sidebar
+//
+// Paned Headerbars
+//
+FeedReaderreaderUI.background.csd,
 GeditWindow.background.csd {
-  background-color: transparent;
 
-  .pane-separator,
-  .pane-separator:hover { background-color: $dark_sidebar_border; }
+  > .titlebar .pane-separator,
+  &.maximized > .titlebar .pane-separator,
+  > .titlebar .pane-separator:backdrop,
+  &.maximized > .titlebar .pane-separator:backdrop { background-color: $header_border; }
 
-  .gedit-headerbar-paned.titlebar .pane-separator,
-  &.maximized .gedit-headerbar-paned.titlebar .pane-separator,
-  .gedit-headerbar-paned.titlebar .pane-separator:backdrop,
-  &.maximized .gedit-headerbar-paned.titlebar .pane-separator:backdrop { background-color: $header_border; }
+  > .titlebar { background-color: transparent; }
 
-  .gedit-headerbar-paned.titlebar { background-color: transparent; }
-
-  .gedit-headerbar-paned.titlebar > GtkHeaderBar.header-bar.titlebar,
-  .gedit-titlebar-left,
-  .gedit-titlebar-right {
+  > .titlebar > GtkHeaderBar.header-bar.titlebar {
     background-color: $header_bg;
 
     &:backdrop { background-color: $header_bg_backdrop; }
   }
 
-  &.maximized .gedit-headerbar-paned.titlebar > GtkHeaderBar.header-bar.titlebar,
-  &.maximized .gedit-titlebar-left,
-  &.maximized .gedit-titlebar-right {
+  &.maximized > .titlebar > GtkHeaderBar.header-bar.titlebar {
     background-color: opacify($header_bg, 1);
 
     &:backdrop { background-color: opacify($header_bg_backdrop, 1); }
   }
+}
 
+// Gedit
+GeditWindow.background.csd {
+  background-color: transparent;
+
+  .pane-separator { background-color: $dark_sidebar_border; }
 }
 
 .gedit-bottom-panel-paned { background-color: $base_color; }
@@ -229,32 +203,7 @@ GeditFileBrowserWidget {
 
   .maximized & { background-color: opacify($dark_sidebar_bg, 1); }
 
-  .scrollbar {
-
-    &.overlay-indicator:not(.dragging):not(.hovering) .slider {
-      background-color: lighten($dark_sidebar_fg, 15%);
-      border: 1px solid transparentize(black, 0.7);
-    }
-
-    // trough coloring
-    .trough {
-      background-color: transparentize(black, 0.8);
-      border: none;
-    }
-
-    // slider coloring
-    .slider {
-      background-color: transparentize(lighten($dark_sidebar_fg, 15%), 0.3);
-
-      &:hover { background-color: lighten($dark_sidebar_fg, 15%); }
-
-      &:prelight:active { background-color: $selected_bg_color; }
-
-      &:insensitive {
-        background-color: transparent;
-      }
-    }
-  }
+  .scrollbar { @extend %dark_sidebar_scrollbar; }
 
   .horizontal {
     background-color: transparent;
@@ -289,4 +238,31 @@ GeditWindow.background.csd GeditFileBrowserView.view {
 
   &:focus { @include entry(osd-focus); }
   &:insensitive { @include entry(osd-insensitive); }
+}
+
+%dark_sidebar_scrollbar {
+
+  &.overlay-indicator:not(.dragging):not(.hovering) .slider {
+    background-color: lighten($dark_sidebar_fg, 15%);
+    border: 1px solid transparentize(black, 0.7);
+  }
+
+  // trough coloring
+  .trough {
+    background-color: transparentize(black, 0.8);
+    border: none;
+  }
+
+  // slider coloring
+  .slider {
+    background-color: transparentize(lighten($dark_sidebar_fg, 15%), 0.3);
+
+    &:hover { background-color: lighten($dark_sidebar_fg, 20%); }
+
+    &:prelight:active { background-color: $selected_bg_color; }
+
+    &:insensitive {
+      background-color: transparent;
+    }
+  }
 }

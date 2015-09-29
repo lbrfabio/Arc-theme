@@ -3499,7 +3499,6 @@ UnityDecoration {
     box-shadow: inset 0 1px rgba(239, 240, 242, 0.95); }
     UnityDecoration.top:backdrop {
       border-bottom-width: 0;
-      background-image: linear-gradient(to bottom, #eff0f2);
       color: rgba(82, 93, 118, 0.5); }
   UnityDecoration.left, UnityDecoration.right, UnityDecoration.bottom,
   UnityDecoration.left:backdrop, UnityDecoration.right:backdrop, UnityDecoration.bottom:backdrop {
@@ -3941,37 +3940,6 @@ NemoWindow .pane-separator,
 MarlinViewWindow .pane-separator {
   background-color: rgba(53, 57, 69, 0.95); }
 
-GtkFileChooserDialog GtkPlacesSidebar.sidebar .overlay-indicator.scrollbar:not(.dragging):not(.hovering) .slider,
-NautilusWindow GtkPlacesSidebar.sidebar .overlay-indicator.scrollbar:not(.dragging):not(.hovering) .slider, NemoWindow .sidebar .overlay-indicator.scrollbar:not(.dragging):not(.hovering) .slider,
-MarlinViewWindow .sidebar .overlay-indicator.scrollbar:not(.dragging):not(.hovering) .slider {
-  background-color: #e7eaee;
-  border: 1px solid rgba(0, 0, 0, 0.3); }
-
-GtkFileChooserDialog GtkPlacesSidebar.sidebar .scrollbar .trough,
-NautilusWindow GtkPlacesSidebar.sidebar .scrollbar .trough, NemoWindow .sidebar .scrollbar .trough,
-NemoWindow .source-list.sidebar.view .scrollbar .trough,
-MarlinViewWindow .sidebar .scrollbar .trough, MarlinViewWindow .source-list.sidebar.view .scrollbar .trough {
-  background-color: rgba(0, 0, 0, 0.2);
-  border: none; }
-
-GtkFileChooserDialog GtkPlacesSidebar.sidebar .scrollbar .slider,
-NautilusWindow GtkPlacesSidebar.sidebar .scrollbar .slider, NemoWindow .sidebar .scrollbar .slider,
-NemoWindow .source-list.sidebar.view .scrollbar .slider,
-MarlinViewWindow .sidebar .scrollbar .slider, MarlinViewWindow .source-list.sidebar.view .scrollbar .slider {
-  background-color: rgba(231, 234, 238, 0.7); }
-  GtkFileChooserDialog GtkPlacesSidebar.sidebar .scrollbar .slider:hover,
-  NautilusWindow GtkPlacesSidebar.sidebar .scrollbar .slider:hover, NemoWindow .sidebar .scrollbar .slider:hover,
-  MarlinViewWindow .sidebar .scrollbar .slider:hover {
-    background-color: #f6f7f9; }
-  GtkFileChooserDialog GtkPlacesSidebar.sidebar .scrollbar .slider:prelight:active,
-  NautilusWindow GtkPlacesSidebar.sidebar .scrollbar .slider:prelight:active, NemoWindow .sidebar .scrollbar .slider:prelight:active,
-  MarlinViewWindow .sidebar .scrollbar .slider:prelight:active {
-    background-color: #5294E2; }
-  GtkFileChooserDialog GtkPlacesSidebar.sidebar .scrollbar .slider:insensitive,
-  NautilusWindow GtkPlacesSidebar.sidebar .scrollbar .slider:insensitive, NemoWindow .sidebar .scrollbar .slider:insensitive,
-  MarlinViewWindow .sidebar .scrollbar .slider:insensitive {
-    background-color: transparent; }
-
 GtkFileChooserDialog.background.csd, GtkFileChooserDialog.background {
   background-color: rgba(53, 57, 69, 0.95); }
 
@@ -3997,34 +3965,38 @@ GtkFileChooserDialog GtkFileChooserWidget > GtkActionBar > GtkRevealer > .action
 GtkFileChooserDialog .dialog-vbox > .frame GtkLabel, GtkFileChooserDialog .dialog-vbox > .frame GtkComboBox {
   color: #BAC3CF; }
 
+FeedReaderreaderUI.background.csd > .titlebar .pane-separator,
+FeedReaderreaderUI.background.csd.maximized > .titlebar .pane-separator,
+FeedReaderreaderUI.background.csd > .titlebar .pane-separator:backdrop,
+FeedReaderreaderUI.background.csd.maximized > .titlebar .pane-separator:backdrop,
+GeditWindow.background.csd > .titlebar .pane-separator,
+GeditWindow.background.csd.maximized > .titlebar .pane-separator,
+GeditWindow.background.csd > .titlebar .pane-separator:backdrop,
+GeditWindow.background.csd.maximized > .titlebar .pane-separator:backdrop {
+  background-color: rgba(212, 213, 219, 0.95); }
+
+FeedReaderreaderUI.background.csd > .titlebar,
+GeditWindow.background.csd > .titlebar {
+  background-color: transparent; }
+
+FeedReaderreaderUI.background.csd > .titlebar > GtkHeaderBar.header-bar.titlebar,
+GeditWindow.background.csd > .titlebar > GtkHeaderBar.header-bar.titlebar {
+  background-color: rgba(231, 232, 235, 0.95); }
+  FeedReaderreaderUI.background.csd > .titlebar > GtkHeaderBar.header-bar.titlebar:backdrop,
+  GeditWindow.background.csd > .titlebar > GtkHeaderBar.header-bar.titlebar:backdrop {
+    background-color: rgba(239, 240, 242, 0.95); }
+
+FeedReaderreaderUI.background.csd.maximized > .titlebar > GtkHeaderBar.header-bar.titlebar,
+GeditWindow.background.csd.maximized > .titlebar > GtkHeaderBar.header-bar.titlebar {
+  background-color: #e7e8eb; }
+  FeedReaderreaderUI.background.csd.maximized > .titlebar > GtkHeaderBar.header-bar.titlebar:backdrop,
+  GeditWindow.background.csd.maximized > .titlebar > GtkHeaderBar.header-bar.titlebar:backdrop {
+    background-color: #eff0f2; }
+
 GeditWindow.background.csd {
   background-color: transparent; }
-  GeditWindow.background.csd .pane-separator,
-  GeditWindow.background.csd .pane-separator:hover {
+  GeditWindow.background.csd .pane-separator {
     background-color: rgba(53, 57, 69, 0.95); }
-  GeditWindow.background.csd .gedit-headerbar-paned.titlebar .pane-separator,
-  GeditWindow.background.csd.maximized .gedit-headerbar-paned.titlebar .pane-separator,
-  GeditWindow.background.csd .gedit-headerbar-paned.titlebar .pane-separator:backdrop,
-  GeditWindow.background.csd.maximized .gedit-headerbar-paned.titlebar .pane-separator:backdrop {
-    background-color: rgba(212, 213, 219, 0.95); }
-  GeditWindow.background.csd .gedit-headerbar-paned.titlebar {
-    background-color: transparent; }
-  GeditWindow.background.csd .gedit-headerbar-paned.titlebar > GtkHeaderBar.header-bar.titlebar,
-  GeditWindow.background.csd .gedit-titlebar-left,
-  GeditWindow.background.csd .gedit-titlebar-right {
-    background-color: rgba(231, 232, 235, 0.95); }
-    GeditWindow.background.csd .gedit-headerbar-paned.titlebar > GtkHeaderBar.header-bar.titlebar:backdrop,
-    GeditWindow.background.csd .gedit-titlebar-left:backdrop,
-    GeditWindow.background.csd .gedit-titlebar-right:backdrop {
-      background-color: rgba(239, 240, 242, 0.95); }
-  GeditWindow.background.csd.maximized .gedit-headerbar-paned.titlebar > GtkHeaderBar.header-bar.titlebar,
-  GeditWindow.background.csd.maximized .gedit-titlebar-left,
-  GeditWindow.background.csd.maximized .gedit-titlebar-right {
-    background-color: #e7e8eb; }
-    GeditWindow.background.csd.maximized .gedit-headerbar-paned.titlebar > GtkHeaderBar.header-bar.titlebar:backdrop,
-    GeditWindow.background.csd.maximized .gedit-titlebar-left:backdrop,
-    GeditWindow.background.csd.maximized .gedit-titlebar-right:backdrop {
-      background-color: #eff0f2; }
 
 .gedit-bottom-panel-paned {
   background-color: #ffffff; }
@@ -4062,20 +4034,6 @@ GeditFileBrowserWidget {
   background-color: rgba(53, 57, 69, 0.95); }
   .maximized GeditFileBrowserWidget {
     background-color: #353945; }
-  GeditFileBrowserWidget .scrollbar.overlay-indicator:not(.dragging):not(.hovering) .slider {
-    background-color: #e7eaee;
-    border: 1px solid rgba(0, 0, 0, 0.3); }
-  GeditFileBrowserWidget .scrollbar .trough {
-    background-color: rgba(0, 0, 0, 0.2);
-    border: none; }
-  GeditFileBrowserWidget .scrollbar .slider {
-    background-color: rgba(231, 234, 238, 0.7); }
-    GeditFileBrowserWidget .scrollbar .slider:hover {
-      background-color: #e7eaee; }
-    GeditFileBrowserWidget .scrollbar .slider:prelight:active {
-      background-color: #5294E2; }
-    GeditFileBrowserWidget .scrollbar .slider:insensitive {
-      background-color: transparent; }
   GeditFileBrowserWidget .horizontal {
     background-color: transparent;
     border-color: rgba(37, 40, 49, 0.95); }
@@ -4134,6 +4092,37 @@ GtkFileChooserDialog .dialog-vbox > .frame .entry {
   GtkFileChooserDialog .dialog-vbox > .frame .entry:insensitive {
     color: rgba(186, 195, 207, 0.55);
     background-image: linear-gradient(to bottom, rgba(102, 109, 132, 0.2)); }
+
+GtkFileChooserDialog GtkPlacesSidebar.sidebar .overlay-indicator.scrollbar:not(.dragging):not(.hovering) .slider,
+NautilusWindow GtkPlacesSidebar.sidebar .overlay-indicator.scrollbar:not(.dragging):not(.hovering) .slider, NemoWindow .sidebar .overlay-indicator.scrollbar:not(.dragging):not(.hovering) .slider,
+MarlinViewWindow .sidebar .overlay-indicator.scrollbar:not(.dragging):not(.hovering) .slider, GeditFileBrowserWidget .overlay-indicator.scrollbar:not(.dragging):not(.hovering) .slider {
+  background-color: #e7eaee;
+  border: 1px solid rgba(0, 0, 0, 0.3); }
+
+GtkFileChooserDialog GtkPlacesSidebar.sidebar .scrollbar .trough,
+NautilusWindow GtkPlacesSidebar.sidebar .scrollbar .trough, NemoWindow .sidebar .scrollbar .trough,
+NemoWindow .source-list.sidebar.view .scrollbar .trough,
+MarlinViewWindow .sidebar .scrollbar .trough, MarlinViewWindow .source-list.sidebar.view .scrollbar .trough, GeditFileBrowserWidget .scrollbar .trough {
+  background-color: rgba(0, 0, 0, 0.2);
+  border: none; }
+
+GtkFileChooserDialog GtkPlacesSidebar.sidebar .scrollbar .slider,
+NautilusWindow GtkPlacesSidebar.sidebar .scrollbar .slider, NemoWindow .sidebar .scrollbar .slider,
+NemoWindow .source-list.sidebar.view .scrollbar .slider,
+MarlinViewWindow .sidebar .scrollbar .slider, MarlinViewWindow .source-list.sidebar.view .scrollbar .slider, GeditFileBrowserWidget .scrollbar .slider {
+  background-color: rgba(231, 234, 238, 0.7); }
+  GtkFileChooserDialog GtkPlacesSidebar.sidebar .scrollbar .slider:hover,
+  NautilusWindow GtkPlacesSidebar.sidebar .scrollbar .slider:hover, NemoWindow .sidebar .scrollbar .slider:hover,
+  MarlinViewWindow .sidebar .scrollbar .slider:hover, GeditFileBrowserWidget .scrollbar .slider:hover {
+    background-color: #f6f7f9; }
+  GtkFileChooserDialog GtkPlacesSidebar.sidebar .scrollbar .slider:prelight:active,
+  NautilusWindow GtkPlacesSidebar.sidebar .scrollbar .slider:prelight:active, NemoWindow .sidebar .scrollbar .slider:prelight:active,
+  MarlinViewWindow .sidebar .scrollbar .slider:prelight:active, GeditFileBrowserWidget .scrollbar .slider:prelight:active {
+    background-color: #5294E2; }
+  GtkFileChooserDialog GtkPlacesSidebar.sidebar .scrollbar .slider:insensitive,
+  NautilusWindow GtkPlacesSidebar.sidebar .scrollbar .slider:insensitive, NemoWindow .sidebar .scrollbar .slider:insensitive,
+  MarlinViewWindow .sidebar .scrollbar .slider:insensitive, GeditFileBrowserWidget .scrollbar .slider:insensitive {
+    background-color: transparent; }
 
 /* GTK NAMED COLORS */
 @define-color theme_fg_color #5c616c;

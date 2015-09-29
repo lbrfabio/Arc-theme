@@ -46,37 +46,11 @@ MarlinViewWindow {
       }
     }
 
-    &.frame {
-      color: $dark_sidebar_fg;
-    }
+    &.frame { color: $dark_sidebar_fg; }
 
     .separator { color: transparent; }
 
-    .scrollbar {
-
-      &.trough { background-color: transparent; border-color: transparent; }
-
-      &.slider {
-        border-radius: 20px;
-        border: 3px solid transparent; //margin :/
-        background-color: transparentize(lighten($dark_sidebar_fg, 15%), 0.3);
-        &:hover {
-          background-color: lighten($dark_sidebar_fg, 20%);
-        }
-        &:prelight:active {
-          background-color: $selected_bg_color;
-        }
-        &.fine-tune {
-          border-width: 4px;
-          &:prelight:active {
-            background-color: $selected_bg_color;
-          }
-        }
-        &:insensitive {
-          background-color: transparent;
-        }
-      }
-    }
+    .scrollbar { @extend %dark_sidebar_scrollbar }
   }
   &.maximized .sidebar { background-color: opacify($dark_sidebar_bg, 1); }
 
@@ -113,17 +87,37 @@ GtkFileChooserDialog {
   }
 }
 
-// Gedit sidebar
+//
+// Paned Headerbars
+//
+FeedReaderreaderUI.background.csd,
+GeditWindow.background.csd {
+
+  > .titlebar .pane-separator,
+  &.maximized > .titlebar .pane-separator,
+  > .titlebar .pane-separator:backdrop,
+  &.maximized > .titlebar .pane-separator:backdrop { background-color: $header_border; }
+
+  > .titlebar { background-color: transparent; }
+
+  > .titlebar > GtkHeaderBar.header-bar.titlebar {
+    background-color: $header_bg;
+
+    &:backdrop { background-color: $header_bg_backdrop; }
+  }
+
+  &.maximized > .titlebar > GtkHeaderBar.header-bar.titlebar {
+    background-color: opacify($header_bg, 1);
+
+    &:backdrop { background-color: opacify($header_bg_backdrop, 1); }
+  }
+}
+
+// Gedit
 GeditWindow.background.csd {
   background-color: transparent;
 
-  .pane-separator,
-  .pane-separator:hover { background-color: $dark_sidebar_border; }
-
-  .titlebar .pane-separator,
-  &.maximized .titlebar .pane-separator,
-  .titlebar .pane-separator:backdrop,
-  &.maximized .titlebar .pane-separator:backdrop { background-color: $header_border; }
+  .pane-separator { background-color: $dark_sidebar_border; }
 }
 
 .gedit-bottom-panel-paned { background-color: $base_color; }
@@ -169,34 +163,10 @@ GeditFileBrowserWidget {
 
   .maximized & { background-color: opacify($dark_sidebar_bg, 1); }
 
-  .scrollbar {
-
-    &.trough { background-color: transparent; border-color: transparent; }
-
-    &.slider {
-      border-radius: 20px;
-      border: 3px solid transparent; //margin :/
-      background-color: transparentize(lighten($dark_sidebar_fg, 15%), 0.3);
-      &:hover {
-        background-color: lighten($dark_sidebar_fg, 20%);
-      }
-      &:prelight:active {
-        background-color: $selected_bg_color;
-      }
-      &.fine-tune {
-        border-width: 4px;
-        &:prelight:active {
-          background-color: $selected_bg_color;
-        }
-      }
-      &:insensitive {
-        background-color: transparent;
-      }
-    }
-  }
+  .scrollbar { @extend %dark_sidebar_scrollbar }
 
   .scrollbars-junction,
-  .scrollbars-junction.frame { // the small square between two scrollbars
+  .scrollbars-junction.frame {
     border-color: transparent;
     background-color: transparent;
   }
@@ -234,4 +204,30 @@ GeditWindow.background.csd GeditFileBrowserView.view {
 
   &:focus { @include entry(osd-focus); }
   &:insensitive { @include entry(osd-insensitive); }
+}
+
+%dark_sidebar_scrollbar {
+
+  &.trough { background-color: transparent; border-color: transparent; }
+
+  &.slider {
+    border-radius: 20px;
+    border: 3px solid transparent;
+    background-color: transparentize(lighten($dark_sidebar_fg, 15%), 0.3);
+    &:hover {
+      background-color: lighten($dark_sidebar_fg, 20%);
+    }
+    &:prelight:active {
+      background-color: $selected_bg_color;
+    }
+    &.fine-tune {
+      border-width: 4px;
+      &:prelight:active {
+        background-color: $selected_bg_color;
+      }
+    }
+    &:insensitive {
+      background-color: transparent;
+    }
+  }
 }
