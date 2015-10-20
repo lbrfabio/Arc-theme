@@ -83,6 +83,8 @@ GtkFileChooserDialog {
     .button { @extend %dark_sidebar_button; }
     .entry { @extend %dark_sidebar_entry; }
 
+    @extend %osd_check_radio;
+
     GtkLabel, GtkComboBox { color: $dark_sidebar_fg; }
   }
 }
@@ -98,8 +100,6 @@ GeditWindow.background.csd {
   > .titlebar .pane-separator:backdrop,
   &.maximized > .titlebar .pane-separator:backdrop { background-color: $header_border; }
 
-  > .titlebar { background-color: transparent; }
-
   > .titlebar > GtkHeaderBar.header-bar.titlebar {
     background-color: $header_bg;
 
@@ -113,11 +113,19 @@ GeditWindow.background.csd {
   }
 }
 
+FeedReaderreaderUI.background.csd > FeedReaderreaderHeaderbar.titlebar,
+GeditWindow.background.csd > .titlebar {
+  background-color: transparent;
+}
+
 // Gedit
 GeditWindow.background.csd {
   background-color: transparent;
 
   .pane-separator { background-color: $dark_sidebar_border; }
+
+  > .titlebar.default-decoration,
+  > .titlebar.default-decoration:backdrop { background-color: opacify($header_bg, 1); }  // fix for elementary OS
 }
 
 .gedit-bottom-panel-paned { background-color: $base_color; }

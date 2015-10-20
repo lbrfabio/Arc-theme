@@ -29,6 +29,8 @@ NautilusWindow {
   GtkPlacesSidebar.sidebar {
     background-color: $dark_sidebar_bg;
 
+    .sidebar-placeholder-row.list-row.activatable { border: 1px solid $selected_bg_color; }
+
     .sidebar-new-bookmark-row { background-color: lighten($dark_sidebar_bg, 10%); }
 
     .list-row.activatable {
@@ -123,6 +125,8 @@ GtkFileChooserDialog {
     .button { @extend %dark_sidebar_button; }
     .entry { @extend %dark_sidebar_entry; }
 
+    @extend %osd_check_radio;
+
     GtkLabel, GtkComboBox { color: $dark_sidebar_fg; }
   }
 }
@@ -138,8 +142,6 @@ GeditWindow.background.csd {
   > .titlebar .pane-separator:backdrop,
   &.maximized > .titlebar .pane-separator:backdrop { background-color: $header_border; }
 
-  > .titlebar { background-color: transparent; }
-
   > .titlebar > GtkHeaderBar.header-bar.titlebar {
     background-color: $header_bg;
 
@@ -151,6 +153,11 @@ GeditWindow.background.csd {
 
     &:backdrop { background-color: opacify($header_bg_backdrop, 1); }
   }
+}
+
+FeedReaderreaderUI.background.csd > FeedReaderreaderHeaderbar.titlebar,
+GeditWindow.background.csd > .titlebar {
+  background-color: transparent;
 }
 
 // Gedit

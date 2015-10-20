@@ -324,7 +324,7 @@ $_dot_color: $selected_bg_color;
 
   @include button(normal);
 
-  &.flat { 
+  &.flat {
     @include button(undecorated);
     background-color: transparentize($button_bg, 1);
     border-color: transparentize($button_border, 1);
@@ -457,9 +457,9 @@ $_dot_color: $selected_bg_color;
       }
       &.flat:insensitive {
         @include button(undecorated);
-        color: transparentize($b_color, 0.35);
+        color: $insensitive_fg_color;
       }
-      &:insensitive { opacity: 0.75; }
+      &:insensitive { @include button(insensitive); }
     }
   }
 
@@ -1420,11 +1420,8 @@ GtkComboBox {
       &:active, &:checked {
         @include button(suggested_destructive, darken($b_color, 10%));
       }
-      &.flat:insensitive {
-        @include button(undecorated);
-        color: transparentize($b_color, 0.35);
-      }
-      &:insensitive { opacity: 0.75; }
+      &.flat:insensitive,
+      &:insensitive { @include button(header-insensitive); }
     }
     .button.#{$b_type}:backdrop,
     .button.#{$b_type}:backdrop {
@@ -1597,16 +1594,17 @@ GtkTreeView.view {                                      // treeview grid lines a
   &.progressbar { // progress bar in treeviews
     color: $selected_fg_color;
     border-radius: 3px;
+    background-image: linear-gradient(to bottom, $selected_bg_color);
 
     &:selected {
       color: $selected_bg_color;
       box-shadow: none;
-      background-color: $selected_fg_color;
+      background-image: linear-gradient(to bottom, $selected_fg_color);
     }
   }
   &.trough, &.trough:selected { // progress bar trough in treeviews
     color: $fg_color;
-    background-color: $button_border;
+    background-image: linear-gradient(to bottom, $button_border);
     border-radius: 3px;
     border-width: 0;
   }
@@ -2165,6 +2163,13 @@ GtkSwitch {
       -gtk-icon-source: -gtk-scaled(url("assets/#{$a}#{$as}#{$asset_suffix}.png"),
                                     url("assets/#{$a}#{$as}#{$asset_suffix}@2.png"));
     }
+
+    %osd_check_radio {
+      .#{$w}#{$s} {
+        -gtk-icon-source: -gtk-scaled(url("assets/#{$a}#{$as}-dark.png"),
+                                      url("assets/#{$a}#{$as}-dark@2.png"));
+      }
+    }
     // the borders of checks and radios are
     // too similar in luminosity to the selected background color, hence
     // we need special casing.
@@ -2597,31 +2602,6 @@ GtkCalendar {
         @extend %middle_button;
       }
 
-      &:focus {
-        color: $selected_bg_color;
-
-        &:active, &:checked { color: $selected_fg_color; }
-      }
-
-//      @each $b_type, $b_color in (suggested-action, $selected_bg_color),
-//                                 (destructive-action, $destructive_color) {
-//        &.#{$b_type} {
-//          @include button(normal, $b_color, white, $edge:none);
-//          @extend %middle_button;
-//          &:hover {
-//            @include button(hover, $b_color, white, $edge:none);
-//            @extend %middle_button;
-//          }
-//          &:active {
-//            @include button(active, $b_color, white, $edge:none);
-//            @extend %middle_button;
-//          }
-//          &:insensitive {
-//            @include button(insensitive, $edge:none);
-//           @extend %middle_button;
-//          }
-//        }
-//      }
       &:first-child{ @extend %first_button; }
       &:last-child { @extend %last_button; }
     }
