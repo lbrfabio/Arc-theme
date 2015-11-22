@@ -90,8 +90,6 @@ TerminalWindow {
 //
 // Nautilus
 //
-NautilusCanvasViewContainer.view .entry { border-radius: 3px; }
-
 .nautilus-canvas-item {
   border-radius: 2px;
 }
@@ -162,50 +160,47 @@ NautilusListView .view { border-bottom: 1px solid $borders_color; }
 //
 // Nemo
 //
-NemoIconViewContainer { @extend NautilusCanvasViewContainer.view }
+.nemo-desktop.nemo-canvas-item { @extend .nautilus-desktop.nautilus-canvas-item; }
 
-NemoWindow .sidebar .frame {
-	border-width: 0;
-}
+NemoWindow {
 
-NemoWindow GtkSeparator.separator.horizontal {
-	color: $borders_color;
-}
+  EelEditableLabel.entry { transition: none; }  // Workaround for invisible text in rename entry
 
-.nemo-desktop.nemo-canvas-item {
-  @extend .nautilus-desktop.nautilus-canvas-item;
-}
+  .sidebar .frame { border-width: 0; }
 
-NemoWindow .primary-toolbar NemoPathBar.linked:not(.vertical):not(.path-bar) > .button {
+  GtkSeparator.separator.horizontal { color: $borders_color; }
 
-  @include button(header-hover);
+  .primary-toolbar NemoPathBar.linked:not(.vertical):not(.path-bar) > .button {
 
-  &:hover { background-color: lighten($header_button_bg, 15%); }
-  &:active, &:checked { @include button(header-active); }
-  &:insensitive { color: transparentize($header_fg, 0.4); }
-}
+    @include button(header-hover);
 
-NemoWindow .primary-toolbar NemoPathBar.linked:not(.vertical):not(.path-bar) > .button,
-NemoWindow .primary-toolbar NemoPathBar.linked:not(.vertical):not(.path-bar) > .button:hover,
-NemoWindow .primary-toolbar NemoPathBar.linked:not(.vertical):not(.path-bar) > .button:active,
-NemoWindow .primary-toolbar NemoPathBar.linked:not(.vertical):not(.path-bar) > .button:checked,
-NemoWindow .primary-toolbar NemoPathBar.linked:not(.vertical):not(.path-bar) > .button:insensitive {
-  @extend %linked;
-  @extend %linked_button;
-}
+    &:hover { background-color: lighten($header_button_bg, 15%); }
+    &:active, &:checked { @include button(header-active); }
+    &:insensitive { color: transparentize($header_fg, 0.4); }
+  }
 
-NemoWindow .primary-toolbar NemoPathBar.linked:not(.vertical):not(.path-bar) {
+  .primary-toolbar NemoPathBar.linked:not(.vertical):not(.path-bar) > .button,
+  .primary-toolbar NemoPathBar.linked:not(.vertical):not(.path-bar) > .button:hover,
+  .primary-toolbar NemoPathBar.linked:not(.vertical):not(.path-bar) > .button:active,
+  .primary-toolbar NemoPathBar.linked:not(.vertical):not(.path-bar) > .button:checked,
+  .primary-toolbar NemoPathBar.linked:not(.vertical):not(.path-bar) > .button:insensitive {
+    @extend %linked;
+    @extend %linked_button;
+  }
 
-  $_linked_separator_color: $header_button_border;
+  .primary-toolbar NemoPathBar.linked:not(.vertical):not(.path-bar) {
 
-  > .button:hover:not(:checked):not(:active):not(:only-child) {
+    $_linked_separator_color: $header_button_border;
 
-      &:hover {
-        box-shadow: inset  1px 0 $_linked_separator_color,
-                    inset -1px 0 $_linked_separator_color;
-      }
-      &:first-child:hover { box-shadow: inset -1px 0 $_linked_separator_color; }
-      &:last-child:hover { box-shadow: inset 1px 0 $_linked_separator_color; }
+    > .button:hover:not(:checked):not(:active):not(:only-child) {
+
+        &:hover {
+          box-shadow: inset  1px 0 $_linked_separator_color,
+                      inset -1px 0 $_linked_separator_color;
+        }
+        &:first-child:hover { box-shadow: inset -1px 0 $_linked_separator_color; }
+        &:last-child:hover { box-shadow: inset 1px 0 $_linked_separator_color; }
+    }
   }
 }
 

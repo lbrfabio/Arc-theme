@@ -473,6 +473,7 @@ $_dot_color: $selected_bg_color;
     &:hover {
       @include button(osd-hover);
       @extend %linked;
+      &, &:first-child, &:last-child { box-shadow: none; }
     }
     &:active, &:checked {
       background-clip: padding-box;
@@ -489,6 +490,7 @@ $_dot_color: $selected_bg_color;
       box-shadow: none;
       &:hover {
         @include button(osd-hover);
+        &, &:first-child, &:last-child { box-shadow: none; }
       }
       &:insensitive {
         @include button(osd-insensitive);
@@ -1585,7 +1587,7 @@ column-header.button.dnd { // for treeview-like derive widgets
   }
 }
 
-.menu, .popup {
+.menu {
   margin: 4px;
   padding: 0;
   border-radius: 0;
@@ -1630,6 +1632,8 @@ column-header.button.dnd { // for treeview-like derive widgets
     }
   }
 }
+
+.csd .popup { border-radius: 2px; }
 
 .menuitem .accelerator { color: gtkalpha(currentColor,0.55); }
 
@@ -2683,6 +2687,10 @@ GtkVolumeButton.button { padding: 8px; }
                 0 5px 5px 0 if($variant == 'light', opacify($_wm_border, 0.1), transparentize($_wm_border, 0.2));
   }
   &.tiled {
+    border-radius: 0;
+  }
+  &.popup {
+    box-shadow: none;
     border-radius: 0;
   }
   &.csd {

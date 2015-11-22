@@ -605,6 +605,8 @@ StScrollBar {
   .popup-menu #notification {
     color: #D3DAE3;
     border-image: url("dark-assets/misc/message.svg") 9 9 9 9; }
+    .popup-menu #notification .notification-button, .popup-menu #notification .notification-icon-button {
+      padding: 5px; }
   #notification.multi-line-notification {
     padding-bottom: 13px;
     color: #BAC3CF; }
@@ -624,6 +626,9 @@ StScrollBar {
 .notification-with-image {
   min-height: 159px;
   color: #BAC3CF; }
+
+.notification-button, .notification-icon-button {
+  padding: 5px; }
 
 .notification-icon-button > StIcon {
   icon-size: 36px; }

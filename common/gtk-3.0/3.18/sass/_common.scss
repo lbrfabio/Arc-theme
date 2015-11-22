@@ -1698,7 +1698,7 @@ column-header.button.dnd { // for treeview-like derive widgets
   }
 }
 
-.menu, .popup {
+.menu {
   margin: 4px;
   padding: 0;
   border-radius: 0;
@@ -1743,6 +1743,8 @@ column-header.button.dnd { // for treeview-like derive widgets
     }
   }
 }
+
+.csd .popup { border-radius: 2px; }
 
 .menuitem .accelerator { color: gtkalpha(currentColor,0.55); }
 
@@ -2708,6 +2710,23 @@ GtkPlacesSidebar.sidebar {
 }
 
 //
+// File chooser
+//
+GtkPlacesView {
+  .server-list-button > GtkImage {
+    transition: 200ms $ease-out-quad;
+    -gtk-icon-transform: rotate(0turn);
+  }
+
+  .server-list-button:checked > GtkImage {
+    transition: 200ms $ease-out-quad;
+    -gtk-icon-transform: rotate(-0.5turn);
+  }
+
+  .list-row.activatable:hover { background-color: transparent; }
+}
+
+//
 // Paned
 //
 GtkPaned {                        // this is for the standard paned separator
@@ -2952,6 +2971,10 @@ GtkVolumeButton.button { padding: 8px; }
   &.tiled {
     border-radius: 0;
   }
+  &.popup {
+    box-shadow: none;
+    border-radius: 0;
+  }
   // server-side decorations as used by mutter
   &.ssd {
     border-radius: if($darker=='false' and $variant=='light', 4px 4px 0 0, 3px 3px 0 0);
@@ -2960,7 +2983,7 @@ GtkVolumeButton.button { padding: 8px; }
     &.maximized { border-radius: 0; }
   }
   &.csd {
-    &.popup, &.menu {
+    &.popup {
       border-radius: 2px;
       box-shadow: 0 3px 6px if($variant == 'light', $_wm_border, transparentize($_wm_border, 0.1)),
                   0 0 0 1px if($variant == 'light', $_wm_border, darken($bg_color, 10%));
@@ -2991,11 +3014,10 @@ GtkVolumeButton.button { padding: 8px; }
   }
 
   .button.titlebutton {
-    padding: 7px 4px;
+    padding: 6px 4px;
 
     @include button(undecorated);
     background-color: transparentize($header_bg, 1);
-    border-width: 0;
 
     &:hover {
       @include button(header-hover);
@@ -3010,6 +3032,7 @@ GtkVolumeButton.button { padding: 8px; }
       background-color: transparent;
       background-position: center;
       background-repeat: no-repeat;
+      border-width: 0;
 
       &:backdrop { opacity: 1; }
     }
