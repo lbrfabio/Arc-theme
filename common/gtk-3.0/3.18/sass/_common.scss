@@ -1810,7 +1810,8 @@ $_scrollbar_bg_color: darken($base_color, 1%);
 
     &:hover { background-color: mix($fg_color, $bg_color, 30%); }
 
-    &:prelight:active { background-color: $selected_bg_color;}
+    &:prelight:active,
+    &:active { background-color: $selected_bg_color;}
 
     &:insensitive {
       background-color: transparent;
@@ -2807,7 +2808,12 @@ GtkVolumeButton.button { padding: 8px; }
   .button.titlebutton {
     @extend .image-button;
 
-    padding: 8px 4px;
+    &:not(GtkMenuButton) {
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+    padding-left: 4px;
+    padding-right: 4px;
 
     @include button(undecorated);
     background-color: transparentize($header_bg, 1);
