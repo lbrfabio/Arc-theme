@@ -1101,6 +1101,7 @@ StScrollBar {
   color: #BAC3CF;
   background-color: rgba(53, 57, 69, 0.95);
   border-color: rgba(0, 0, 0, 0.4);
+  border-width: 1px;
   padding: 6px 1px 6px 0px;
   border-radius: 0 3px 3px 0; }
   #dash:rtl {
@@ -1323,7 +1324,7 @@ StScrollBar {
   padding: 12px;
   padding-right: 7px;
   border-radius: 3px 0 0 3px;
-  background: transparent; 
+  background: transparent;
   border-color: transparent; }
   .workspace-thumbnails:rtl {
     padding: 12px;
