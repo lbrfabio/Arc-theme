@@ -1355,7 +1355,7 @@ StScrollBar {
 .notification-banner:focus {
   font-size: 1em;
   width: 34em;
-  margin: 30px;
+  margin: 5px;
   padding: 10px;
   color: #5c616c;
   background-color: transparent;
