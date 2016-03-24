@@ -17,7 +17,7 @@
  * Inc., 51 Franklin St - Fifth Floor, Boston, MA 02110-1301 USA.
  */
 stage {
-  font-family: Roboto, Sans-Serif;
+  font-family: Futura Bk bt, Cantarell, Sans-Serif;
   font-size: 9pt;
   color: #5c616c; }
 
@@ -150,7 +150,7 @@ StScrollBar {
   -slider-active-background-color: #5294E2;
   -slider-active-border-color: transparent;
   -slider-border-width: 0;
-  -slider-handle-radius: 0px;
+  -slider-handle-radius: 4px;
   height: 18px;
   border: 0 solid transparent;
   border-right-width: 1px;
@@ -387,7 +387,7 @@ StScrollBar {
 .polkit-dialog-user-root-label {
   color: #F27835; }
 
-.polkit-dialog-user-icon {
+.polkit-dialog-user-user-icon {
   border-radius: 2px;
   background-size: contain;
   width: 48px;
@@ -586,7 +586,11 @@ StScrollBar {
 
 #panel {
   font-weight: bold;
-  height: 1.9em;
+  height: 2.1em;
+  min-height: 27px;
+  background-gradient-direction: none;
+  background-color: transparent;
+  border-bottom-width: 0;
   border-image: url("common-assets/panel/panel.svg") 1 1 1 1; }
   #panel.dynamic-top-bar-white-btn {
     border-image: none; }
@@ -1105,7 +1109,6 @@ StScrollBar {
   color: #BAC3CF;
   background-color: rgba(53, 57, 69, 0.95);
   border-color: rgba(0, 0, 0, 0.4);
-  border-with: 1px;
   padding: 6px 1px 6px 0px;
   border-radius: 0 3px 3px 0; }
   #dash:rtl {
@@ -1134,7 +1137,6 @@ StScrollBar {
     padding: 5px 0px 4px 0px; }
 
 .dash-label {
-  font-weight: bold;
   border-radius: 3px;
   padding: 4px 12px;
   color: #ffffff;
@@ -1327,16 +1329,14 @@ StScrollBar {
   spacing: 11px;
   padding: 12px;
   padding-right: 7px;
-  border-radius: 3px 0 0 3px;
-  background: transparent; 
-  border-color: transparent; }
+  border-image: url("common-assets/dash/dash-right.svg") 9 9 9 9; }
   .workspace-thumbnails:rtl {
     padding: 12px;
     padding-left: 7px;
     border-image: url("common-assets/dash/dash-left.svg") 9 9 9 9; }
 
 .workspace-thumbnail-indicator {
-  border: 3px solid rgba(82, 148, 226, 0.8);
+  border: 4px solid rgba(82, 148, 226, 0.8);
   border-radius: 1px;
   padding: 1px; }
 
@@ -1358,7 +1358,7 @@ StScrollBar {
 .notification-banner:focus {
   font-size: 1em;
   width: 34em;
-  margin: 30px;
+  margin: 5px;
   padding: 10px;
   color: #5c616c;
   background-color: transparent;
@@ -1683,10 +1683,10 @@ StScrollBar {
   padding: .2em;
   width: 23em; }
   .login-dialog-user-list:expanded .login-dialog-user-list-item:focus {
-    background-color: rgba(255,255,255,0.1);
+    background-color: #5294E2;
     color: #ffffff; }
   .login-dialog-user-list:expanded .login-dialog-user-list-item:logged-in {
-    border-right: 2px solid rgba(255,255,255,0.1); }
+    border-right: 2px solid #5294E2; }
 
 .login-dialog-user-list-item {
   border-radius: 5px;
@@ -1697,7 +1697,7 @@ StScrollBar {
   .login-dialog-user-list-item:rtl {
     padding-left: 1em; }
   .login-dialog-user-list-item:hover {
-    background-color: rgba(255,255,255,0.1);
+    background-color: #5294E2;
     color: #ffffff; }
   .login-dialog-user-list-item .login-dialog-timed-login-indicator {
     height: 2px;
@@ -1798,8 +1798,7 @@ StScrollBar {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4); }
 
 #lockDialogGroup {
-  /*background: #2e3436 url(misc/noise-texture.png);*/
-  background: #202020;
+  background: #2e3436 url(misc/noise-texture.png);
   background-repeat: repeat; }
 
 #screenShieldNotifications StButton#vhandle, #screenShieldNotifications StButton#hhandle {
