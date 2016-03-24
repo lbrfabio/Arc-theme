@@ -967,7 +967,8 @@ StScrollBar {
   min-height: 450px;
   min-width: 470px; }
   .nm-dialog-content {
-    spacing: 20px; }
+    spacing: 20px;
+    padding: 10px; }
   .nm-dialog-header-hbox {
     spacing: 10px; }
   .nm-dialog-airplane-box {
