@@ -883,7 +883,7 @@ toolbar {
     &.right { border-width: 0 0 0 1px; }
   }
 
-  &:not(.inline-toolbar):not(.osd) {
+  &:not(.inline-toolbar) {
     switch,
     scale,
     entry,
@@ -892,6 +892,8 @@ toolbar {
       margin-right: 1px;
       margin-bottom: 1px;
     }
+    .linked > button,
+    .linked > entry { margin-right:0; }
   }
 }
 
@@ -938,26 +940,30 @@ actionbar {
 //
 // Headerbars
 //
-headerbar {
+$_header_radius: if($darker=='false' and $variant=='light', 4px, 3px);
+
+headerbar,
+%titlebar {
+
   min-height: 42px;
-  padding: 0 5px;
+  padding: 0 7px;
 
   border-width: 0 0 1px;
   border-style: solid;
-  border-radius: 0;
   border-color: opacify($header_border, 1);
 
   color: $header_fg;
   background-color: opacify($header_bg, 1);
+  box-shadow: inset 0  1px lighten($header_bg, 3%);
 
   .csd & {  // Transparent header-bars only in csd windows
-    border-radius: if($darker=='false' and $variant=='light', 4px 4px 0 0, 3px 3px 0 0);
     background-color: $header_bg;
     border-color: $header_border;
   }
 
   &:backdrop {
     color: transparentize($header_fg, 0.3);
+    background-color: opacify($header_bg_backdrop, 1);
 
     .csd & { background-color: $header_bg_backdrop; }
   }
@@ -975,8 +981,7 @@ headerbar {
   }
 
   // Selectionmode
-  &.selection-mode,
-  &.titlebar.selection-mode {
+  &.selection-mode {
     color: $selected_fg_color;
     background-color: $selection_mode_bg;
     border-color: darken($selection_mode_bg, 4%);
@@ -988,42 +993,6 @@ headerbar {
     }
 
     .subtitle:link { @extend *:link:selected;  }
-
-    button {
-      color: $selected_fg_color;
-      outline-color: transparentize($selected_fg_color, 0.7);
-      background-color: transparentize($selected_fg_color, 1);
-      border-color: transparentize($selected_fg_color, 1);
-
-      &.flat {
-        @include button(undecorated);
-        color: $selected_fg_color;
-        background-color: transparentize($selected_fg_color, 1);
-      }
-      &:hover {
-        color: $selected_fg_color;
-        outline-color: transparentize($selected_fg_color, 0.7);
-        background-color: transparentize($selected_fg_color, 0.95);
-        border-color: transparentize($selected_fg_color, 0.5);
-      }
-      &:active, &:checked {
-        color: $selection_mode_bg;
-        outline-color: transparentize($selection_mode_bg, 0.7);
-        background-color: $selected_fg_color;
-        border-color: $selected_fg_color;
-      }
-      &:disabled {
-        color: transparentize($selected_fg_color, 0.6);
-        background-color: transparentize($selected_fg_color, 1);
-        border-color: transparentize($selected_fg_color, 1);
-
-        &:active, &:checked {
-          color: transparentize($selection_mode_bg, 0.6);
-          background-color: transparentize($selected_fg_color, 0.85);
-          border-color: transparentize($selected_fg_color, 0.85);
-        }
-      }
-    }
 
     .selection-menu {
       box-shadow: none;
@@ -1045,6 +1014,8 @@ headerbar {
   .maximized & {
     background-color: opacify($header_bg, 1);
     border-color: opacify($header_border, 1);
+
+    &:backdrop { background-color: opacify($header_bg_backdrop, 1); }
   }
 
   &.default-decoration,
@@ -1058,66 +1029,58 @@ headerbar {
 
     .maximized & { background-color: opacify($header_bg, 1); }
   }
-}
 
-.titlebar {
-  padding: 0 7px;
-  border-radius: if($darker=='false' and $variant=='light', 4px 4px 0 0, 3px 3px 0 0);
-  color: $header_fg;
-  background-color: opacify($header_bg, 1);
-  box-shadow: inset 0  1px lighten($header_bg, 3%);
-
-  .csd & { background-color: $header_bg; }
-
-  &:backdrop {
-    color: transparentize($header_fg, 0.3);
-    background-color: opacify($header_bg_backdrop, 1);
-
-    .csd & { background-color: $header_bg_backdrop; }
-  }
-
-  .maximized & {
-    background-color: opacify($header_bg, 1);
-
-    &:backdrop, .csd &:backdrop { background-color: opacify($header_bg_backdrop, 1); }
-  }
-
-  // Fixes double backgrounds on paned headerbars
-  &:not(headerbar),
-  &:backdrop:not(headerbar) {
-    window > &,
-    window.csd > & {
-      padding: 0;
-      border: none;
-      background: none;
-    }
-  }
-  // Separator in Gnome Tweak Tool
-  separator { background-color: $header_border; }
-}
-
-// more paned headerbar fixes (Gedit)
-paned.titlebar {
-  separator { background-color: transparent; }
-
-  > headerbar {
-    &:not(:only-child):not(:first-child):not(:last-child) { border-radius: 0;}
-
-    ~ headerbar { border-top-left-radius: 0; }
-    &:first-child { border-top-right-radius: 0; }
-  }
-}
-
-// Only extending headerbar avoids some problems (Gnome Documents searchbar)
-headerbar {
   separator.titlebutton { @extend %header_separator; }
 
   @extend %header_widgets;
+}
 
+.titlebar {
+  border-radius: $_header_radius $_header_radius 0 0;
+}
+
+headerbar {
   entry, button, separator {
     margin-top: 6px;
     margin-bottom: 6px;
   }
+
+  // Fixes split headerbars
+  separator:first-child + &,
+  &:first-child {
+    &, &:backdrop {
+      border-top-left-radius: $_header_radius;
+
+      .maximized &,
+      .tiled & { border-radius: 0; }
+    }
+  }
+
+  &:last-child {
+    &, &:backdrop {
+      border-top-right-radius: $_header_radius;
+
+      .maximized &,
+      .tiled & { border-radius: 0; }
+    }
+  }
+}
+
+// Fixes split headerbars too
+.titlebar:not(headerbar) {
+  window > &,
+  window.csd > & {
+    &, &:backdrop {
+      padding: 0;
+      background: none;
+      border: none;
+      box-shadow: none;
+    }
+  }
+
+  > separator { background-image: linear-gradient(to top, $header_border); }
+
+  @extend %titlebar;
 }
 
 %header_separator {
@@ -1196,7 +1159,27 @@ headerbar {
     &:disabled:active, &:disabled:checked { @include button(header-insensitive-active); }
   }
 
+  &.selection-mode button {
+
+    &, &.flat {
+      @include button(undecorated);
+      color: $selected_fg_color;
+      background-color: transparentize($selected_fg_color, 1);
+    }
+    &:hover { @extend %normal_selected_button; }
+    &:active, &:checked { @extend %selected-button:active; }
+
+    &:disabled {
+      @extend %selected-button.flat:disabled;
+
+      &:checked, &:active { @extend %selected-button:disabled:checked; }
+    }
+  }
+
   // Linking stuff
+  .linked:not(.vertical):not(.path-bar):not(.stack-switcher) {
+    button:not(:last-child):not(:only-child) { margin-right: 1px; }
+  }
 
   // Reset buttons
   .linked:not(.vertical):not(.path-bar) > button,
@@ -1621,25 +1604,29 @@ menu,
       check, radio {
         min-height: 16px;
         min-width: 16px;
-        &:dir(ltr) { margin-right: 7px; }
-        &:dir(rtl) { margin-left: 7px; }
+        &:dir(ltr) { margin-right: 6px; margin-left: 2px; }
+        &:dir(rtl) { margin-left: 6px; margin-right: 2px; }
       }
     }
   }
-  arrow { // overflow buttons
-    @extend %undecorated_button;
-    border-style: none;
-    border-radius: 0;
+  // overflow buttons
+  > arrow {
+    @include button(undecorated);
     min-width: 16px;
     min-height: 16px;
+    padding: 4px;
+    background-color: $_menu_bg;
+    border-radius: 0;
 
     &.top {
-      -gtk-icon-source: -gtk-icontheme('pan-up-symbolic');
+      margin-top: -6px;
       border-bottom: 1px solid mix($fg_color, $base_color, 10%);
+      -gtk-icon-source: -gtk-icontheme('pan-up-symbolic');
     }
     &.bottom {
-      -gtk-icon-source: -gtk-icontheme('pan-down-symbolic');
+      margin-bottom: -6px;
       border-top: 1px solid mix($fg_color, $base_color, 10%);
+      -gtk-icon-source: -gtk-icontheme('pan-down-symbolic');
     }
     &:hover { background-color: mix($fg_color, $base_color, 10%); }
     &:disabled {
@@ -1934,30 +1921,31 @@ scrollbar {
 //
 switch {
   font: 1;
-  outline-color: transparent;
+
+  min-width: 52px;
+  min-height: 24px;
+
+  background-size: 52px 24px;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  slider {
+    min-width: 1px;
+    min-height: 1px;
+  }
 
   &, slider {
-    background-size: 52px 24px;
-    background-repeat: no-repeat;
-    background-position: right center;
+    outline-color: transparent;
     color: transparent;
-    border-color: transparent;
-    border-image: none;
-    border-style: none;
+    border: none;
     box-shadow: none;
-
-    &:dir(rtl) { background-position: left center; }
-  }
-  slider {
-    min-width: 52px;
-    min-height: 24px;
   }
 }
 
 @each $k,$l in ('',''),
-               (':active','-active'),
+               (':checked','-active'),
                (':disabled','-insensitive'),
-               (':active:disabled','-active-insensitive') {
+               (':checked:disabled','-active-insensitive') {
 
   // load switch troughs from .png files in assets directory
 
@@ -2136,10 +2124,18 @@ scale {
     }
     //OSD sliders
     .osd & {
-      background-image: linear-gradient(to bottom, $osd_bg_color);
+      min-width: 11px;
+      min-height: 11px;
+      margin: -4px;
+
+      background-image: linear-gradient(to bottom, $selected_bg_color);
       border-color: $selected_bg_color;
 
-      &:hover { background-image: linear-gradient(to bottom, $selected_bg_color); }
+      &:hover {
+        background-image: linear-gradient(to bottom, lighten($selected_bg_color, 10%));
+        border-color: lighten($selected_bg_color, 10%)
+;
+      }
       &:active {
         background-image: linear-gradient(to bottom, darken($selected_bg_color, 10%));
         border-color: darken($selected_bg_color, 10%);
@@ -2306,7 +2302,7 @@ levelbar {
 printdialog {
   paper {
     border: 1px solid $borders_color;
-    background: white;
+    background: $base_color;
     padding: 0;
   }
 
@@ -2488,7 +2484,11 @@ calendar {
 //
 messagedialog { // Message Dialog styling
 
-  .titlebar { background-color: $header_bg; border-bottom: 1px solid darken($header_bg, 7%) }
+  .titlebar {
+    min-height: 20px;
+    background-color: $header_bg;
+    border-bottom: 1px solid darken($header_bg, 7%);
+  }
 
   .dialog-action-area button { padding: 8px; min-height: 0; }
 
@@ -2657,6 +2657,12 @@ placesview {
     transition: 200ms $ease-out-quad;
     -gtk-icon-transform: rotate(-0.5turn);
   }
+
+  // this selects the "connect to server" label
+  > actionbar > revealer > box > label {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
 }
 
 //
@@ -2748,15 +2754,22 @@ infobar { border-style: none; }
 // Buttons on selected backgrounds
 //
 %selected-button {
-  color: $selected_fg_color;
-  outline-color: transparentize($selected_fg_color, 0.7);
-  background-color: transparentize($selected_fg_color, 1);
-  border-color: transparentize($selected_fg_color, 0.5);
+
+  @at-root %normal_selected_button, & {
+    color: $selected_fg_color;
+    outline-color: transparentize($selected_fg_color, 0.7);
+    background-color: transparentize($selected_fg_color, 1);
+    border-color: transparentize($selected_fg_color, 0.5);
+  }
 
   &.flat {
     @include button(undecorated);
     color: $selected_fg_color;
     background-color: transparentize($selected_fg_color, 1);
+
+    &:disabled {
+      &, label { color: transparentize($selected_fg_color, 0.6); }
+    }
   }
   &:hover {
     color: $selected_fg_color;
@@ -2771,14 +2784,14 @@ infobar { border-style: none; }
     border-color: $selected_fg_color;
   }
   &:disabled {
-    color: transparentize($selected_fg_color, 0.6);
+    &, label { color: transparentize($selected_fg_color, 0.5); }
     background-color: transparentize($selected_fg_color, 1);
-    border-color: transparentize($selected_fg_color, 0.8);
+    border-color: transparentize($selected_fg_color, 0.6);
 
     &:active, &:checked {
-      color: transparentize($selected_bg_color, 0.6);
-      background-color: transparentize($selected_fg_color, 0.8);
-      border-color: transparentize($selected_fg_color, 0.8);
+      color: $selected_bg_color;
+      background-color: transparentize($selected_fg_color, 0.5);
+      border-color: transparentize($selected_fg_color, 0.6);
     }
   }
 }
