@@ -3,6 +3,7 @@
 }
 
 $ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$backdrop_transition: 200ms ease-out;
 $asset_suffix: if($variant=='dark', '-dark', ''); // use dark assets in dark variant
 $darker_asset_suffix: if($darker=='true', '-dark', $asset_suffix);
 
@@ -380,23 +381,33 @@ button {
   }
 
   &.image-button {
-    min-width: 32px;
-    padding-left: 0;
-    padding-right: 0;
+    min-width: 24px;
+    padding-left: 5px;
+    padding-right: 5px;
   }
 
   &.text-button {
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: 12px;
+    padding-right: 12px;
   }
 
   &.text-button.image-button {
-    padding-left: 8px;
-    padding-right: 8px;
+    padding-left: 5px;
+    padding-right: 5px;
 
     label {
-      padding-left: 8px;
-      padding-right: 8px;
+      &:first-child {
+        padding-left: 8px;
+        padding-right: 2px;
+      }
+      &:last-child {
+        padding-right: 8px;
+        padding-left: 2px;
+      }
+      &:only-child {
+        padding-left: 8px;
+        padding-right: 8px;
+      }
     }
   }
 
@@ -962,6 +973,8 @@ headerbar,
   }
 
   &:backdrop {
+    transition: $backdrop_transition;
+
     color: transparentize($header_fg, 0.3);
     background-color: opacify($header_bg_backdrop, 1);
 
@@ -1031,8 +1044,6 @@ headerbar,
   }
 
   separator.titlebutton { @extend %header_separator; }
-
-  @extend %header_widgets;
 }
 
 .titlebar {
@@ -1040,6 +1051,8 @@ headerbar,
 }
 
 headerbar {
+  @extend %header_widgets;
+
   entry, button, separator {
     margin-top: 6px;
     margin-bottom: 6px;
@@ -1398,6 +1411,8 @@ treeview.view {
   border-top-color: transparentize(black, 0.9);         // while this is the grid lines color, better then nothing
 
   rubberband { @extend rubberband; }                    // to avoid borders being overridden by the previously set props
+
+  acceleditor > label { background-color: $selected_bg_color; }
 
   &:selected {
     &, &:focus {
@@ -3005,6 +3020,8 @@ decoration {
     box-shadow: 0 0 0 1px if($darker=='true' or $variant == 'dark', transparentize(darken($header_bg, 7%), 0.1), $_wm_border),
                 0 8px 8px 0 transparent,
                 0 5px 5px 0 if($variant == 'light', opacify($_wm_border, 0.1), transparentize($_wm_border, 0.2));
+
+    transition: $backdrop_transition;
   }
   .fullscreen &,
   .tiled & {
