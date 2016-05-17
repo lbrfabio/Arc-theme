@@ -1423,16 +1423,11 @@ StScrollBar {
 
 .workspace-thumbnails,
 .workspace-thumbnails-left:rtl {
-  padding-right: 7px;
-  border-image: url("common-assets/dash/dash-right.svg") 9 9 9 9; }
+  padding-right: 7px;}
 
 .workspace-thumbnails:rtl,
 .workspace-thumbnails-left {
-  padding-left: 7px;
-  border-radius: 3px 0 0 3px;
-  background: transparent;
-  border-color: transparent;
-  border-image: url("common-assets/dash/dash-left.svg") 9 9 9 9; }
+  padding-left: 7px;}
 
 .workspace-thumbnail-indicator {
   border: 3px solid rgba(82, 148, 226, 0.8);
