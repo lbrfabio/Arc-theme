@@ -55,21 +55,7 @@ textview text {
     border-radius: 2px; }
 
 textview border {
-  background-color: #fafbfb;
-  background-image: image(rgba(0, 0, 0, 0.2));
-  background-repeat: no-repeat; }
-  textview border.bottom {
-    background-size: 100% 1px;
-    background-position: top; }
-  textview border.top {
-    background-size: 100% 1px;
-    background-position: bottom; }
-  textview border.left {
-    background-size: 1px 100%;
-    background-position: right; }
-  textview border.right {
-    background-size: 1px 100%;
-    background-position: left; }
+  background-color: #fafbfb; }
 
 rubberband, flowbox rubberband, treeview.view rubberband, .content-view rubberband,
 .rubberband {
@@ -1539,11 +1525,11 @@ menu,
   .menu separator {
     margin: 2px 0;
     background-color: #ffffff; }
-  menu .separator,
-  .csd menu .separator,
-  .menu .separator,
+  menu .separator:not(label),
+  .csd menu .separator:not(label),
+  .menu .separator:not(label),
   .csd
-  .menu .separator {
+  .menu .separator:not(label) {
     color: #ffffff; }
   menu menuitem,
   .menu menuitem {
@@ -3222,7 +3208,7 @@ popover.background label.nautilus-canvas-item.separator, headerbar .nautilus-can
   padding: 3px 6px 3px 6px;
   border-color: #ffffff; }
   .open-document-selector-treeview.view:hover, iconview.open-document-selector-treeview:hover {
-    background-color: rgba(0, 0, 0, 0.05); }
+    background-color: #f4f4f5; }
     .open-document-selector-treeview.view:hover:selected, iconview.open-document-selector-treeview:hover:selected {
       color: #ffffff;
       background-color: #5294E2; }
@@ -4215,6 +4201,7 @@ filechooser placessidebar.sidebar scrollbar,
 @define-color error_color #FC4138;
 @define-color success_color #73d216;
 @define-color placeholder_text_color #A8A8A8;
+@define-color link_color #2679db;
 @define-color content_view_bg #ffffff;
 @define-color wm_title alpha(#cfdae7, 0.8);
 @define-color wm_unfocused_title alpha(#cfdae7, 0.5);
