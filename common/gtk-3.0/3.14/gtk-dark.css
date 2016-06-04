@@ -1564,6 +1564,7 @@ GtkSwitch {
 GtkSwitch.trough {
   background-image: -gtk-scaled(url("assets/switch-dark.png"), url("assets/switch-dark@2.png")); }
 
+.menu .menuitem:hover GtkSwitch.trough,
 .list-row:selected GtkSwitch.trough,
 GtkInfoBar GtkSwitch.trough {
   background-image: -gtk-scaled(url("assets/switch-selected.png"), url("assets/switch-selected@2.png")); }
@@ -1575,6 +1576,7 @@ GtkInfoBar GtkSwitch.trough {
 GtkSwitch.trough:active {
   background-image: -gtk-scaled(url("assets/switch-active-dark.png"), url("assets/switch-active-dark@2.png")); }
 
+.menu .menuitem:hover GtkSwitch.trough:active,
 .list-row:selected GtkSwitch.trough:active,
 GtkInfoBar GtkSwitch.trough:active {
   background-image: -gtk-scaled(url("assets/switch-active-selected.png"), url("assets/switch-active-selected@2.png")); }
@@ -1586,6 +1588,7 @@ GtkInfoBar GtkSwitch.trough:active {
 GtkSwitch.trough:insensitive {
   background-image: -gtk-scaled(url("assets/switch-insensitive-dark.png"), url("assets/switch-insensitive-dark@2.png")); }
 
+.menu .menuitem:hover GtkSwitch.trough:insensitive,
 .list-row:selected GtkSwitch.trough:insensitive,
 GtkInfoBar GtkSwitch.trough:insensitive {
   background-image: -gtk-scaled(url("assets/switch-insensitive-selected.png"), url("assets/switch-insensitive-selected@2.png")); }
@@ -1597,6 +1600,7 @@ GtkInfoBar GtkSwitch.trough:insensitive {
 GtkSwitch.trough:active:insensitive {
   background-image: -gtk-scaled(url("assets/switch-active-insensitive-dark.png"), url("assets/switch-active-insensitive-dark@2.png")); }
 
+.menu .menuitem:hover GtkSwitch.trough:active:insensitive,
 .list-row:selected GtkSwitch.trough:active:insensitive,
 GtkInfoBar GtkSwitch.trough:active:insensitive {
   background-image: -gtk-scaled(url("assets/switch-active-insensitive-selected.png"), url("assets/switch-active-insensitive-selected@2.png")); }
@@ -1811,22 +1815,22 @@ GtkCheckButton.text-button, GtkRadioButton.text-button {
       .osd .scale.slider:active {
         background-image: linear-gradient(to bottom, #2679db);
         border-color: #2679db; }
-    .menuitem:hover .scale.slider,
+    .menu .menuitem:hover .scale.slider,
     .list-row:selected .scale.slider,
     GtkInfoBar .scale.slider {
       background-image: linear-gradient(to bottom, #ffffff);
       border-color: #ffffff; }
-      .menuitem:hover .scale.slider:hover,
+      .menu .menuitem:hover .scale.slider:hover,
       .list-row:selected .scale.slider:hover,
       GtkInfoBar .scale.slider:hover {
         background-image: linear-gradient(to bottom, #e5effb);
         border-color: #e5effb; }
-      .menuitem:hover .scale.slider:active,
+      .menu .menuitem:hover .scale.slider:active,
       .list-row:selected .scale.slider:active,
       GtkInfoBar .scale.slider:active {
         background-image: linear-gradient(to bottom, #a9caf1);
         border-color: #a9caf1; }
-      .menuitem:hover .scale.slider:insensitive,
+      .menu .menuitem:hover .scale.slider:insensitive,
       .list-row:selected .scale.slider:insensitive,
       GtkInfoBar .scale.slider:insensitive {
         background-image: linear-gradient(to bottom, #b1cff2);
@@ -1847,19 +1851,19 @@ GtkCheckButton.text-button, GtkRadioButton.text-button {
       .osd .scale.trough.highlight {
         background-image: none;
         background-image: linear-gradient(to bottom, #5294E2); }
-    .menuitem:hover .scale.trough,
+    .menu .menuitem:hover .scale.trough,
     .list-row:selected .scale.trough,
     GtkInfoBar .scale.trough {
       background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2)); }
-      .menuitem:hover .scale.trough.highlight,
+      .menu .menuitem:hover .scale.trough.highlight,
       .list-row:selected .scale.trough.highlight,
       GtkInfoBar .scale.trough.highlight {
         background-image: linear-gradient(to bottom, #ffffff); }
-        .menuitem:hover .scale.trough.highlight:insensitive,
+        .menu .menuitem:hover .scale.trough.highlight:insensitive,
         .list-row:selected .scale.trough.highlight:insensitive,
         GtkInfoBar .scale.trough.highlight:insensitive {
           background-image: linear-gradient(to bottom, #b1cff2); }
-      .menuitem:hover .scale.trough:insensitive,
+      .menu .menuitem:hover .scale.trough:insensitive,
       .list-row:selected .scale.trough:insensitive,
       GtkInfoBar .scale.trough:insensitive {
         background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1)); }
@@ -3250,6 +3254,7 @@ UnityDecoration {
       border-bottom-width: 0;
       color: rgba(207, 218, 231, 0.5); }
   UnityDecoration.left, UnityDecoration.right, UnityDecoration.bottom, UnityDecoration.left:backdrop, UnityDecoration.right:backdrop, UnityDecoration.bottom:backdrop {
+    background-color: transparent;
     background-image: linear-gradient(to bottom, rgba(32, 35, 43, 0.97)); }
 
 UnityPanelWidget,

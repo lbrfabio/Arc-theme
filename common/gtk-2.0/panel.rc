@@ -30,6 +30,10 @@ style "theme-panel" {
   }
 }
 
+style "theme-panel-progressbar" {
+  bg[ACTIVE] = "#1D1F26"
+}
+
 style "panelbar" {
 
   fg[NORMAL] = "#edf5fb"
@@ -93,27 +97,6 @@ style "workspace-switcher" = "theme-panel" {
   bg[SELECTED] = @selected_bg_color
 }
 
-style "window-buttons" = "theme-panel" {
-
-  xthickness = 3
-  ythickness = 3
-
-  bg[ACTIVE] = @selected_bg_color
-  bg[PRELIGHT] = shade(1.1,@selected_bg_color)
-  bg[SELECTED] = @selected_bg_color
-
-  engine "murrine" {
-    reliefstyle = 0
-    glazestyle = 0
-    glow_shade = 1.0
-    highlight_shade = 1.0
-    roundness = 0
-    gradient_shades = {1.0,1.0,1.0,1.0}
-    textstyle = 0
-    contrast = 0.0
-  }
-}
-
 style "indicator" = "theme-panel" {
   xthickness = 0
   ythickness = 0
@@ -158,9 +141,10 @@ widget_class "*Notif*Brasero*"                        style "theme-panel"
 # XFCE panel theming.
 widget "*Xfce*Panel*"                                 style "theme-panel"
 class "*Xfce*Panel*"                                  style "theme-panel"
+widget "*Xfce*Panel*GtkProgressBar"                   style "theme-panel-progressbar"
 widget "*WnckPager*"                                  style "workspace-switcher"
 widget "*TopMenu*"                                    style "theme-panel"
-widget "*XfceTasklist*"                               style "window-buttons"
+widget "*XfceTasklist*"                               style "panelbuttons"
 
 # Fix gtk-entries in the panel
 widget "*bookmark*GtkEntry"                           style "panel-entry" # fixes smartbookmark-plugin
