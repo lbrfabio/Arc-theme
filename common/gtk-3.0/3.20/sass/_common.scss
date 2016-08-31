@@ -15,9 +15,6 @@ $darker_asset_suffix: if($darker=='true', '-dark', $asset_suffix);
   -GtkScrolledWindow-scrollbar-spacing: 0;
 
   -GtkToolItemGroup-expander-size: 11;
-  -GtkTreeView-expander-size: 11;
-
-  -GtkTreeView-horizontal-separator: 4;
 
   -GtkWidget-text-handle-width: 20;
   -GtkWidget-text-handle-height: 20;
@@ -26,7 +23,7 @@ $darker_asset_suffix: if($darker=='true', '-dark', $asset_suffix);
   -GtkDialog-action-area-border: 0;
 
   // We use the outline properties to signal the focus properties
-  outline-color: transparentize($fg_color, 0.7);
+  outline-color: gtkalpha(currentColor, 0.3);
   outline-style: dashed;
   outline-offset: -3px;
   outline-width: 1px;
@@ -163,7 +160,6 @@ textview { // This will get overridden by .view, needed by gedit line numbers
   border: none;
   background-color: $osd_bg_color;
   background-clip: padding-box;
-  outline-color: transparentize($osd_fg_color, 0.7);
   box-shadow: none;
 }
 
@@ -425,7 +421,6 @@ button {
   // big standalone buttons like in Documents pager
   &.osd {
     color: $osd_fg_color;
-    outline-color: transparentize($osd_fg_color, 0.7);
     background-color: $osd_bg_color;
     border-color: darken($osd_bg_color, 8%);
 
@@ -474,7 +469,6 @@ button {
       &.flat {
         @include button(undecorated);
         color: $b_color;
-        outline-color: transparentize($b_color, 0.7);
       }
       &:hover {
         @include button(suggested_destructive, lighten($b_color, 10%), $b_fg);
@@ -545,6 +539,10 @@ button {
       @else { background-position: left 3px, left 2px; }
     }
   }
+
+  // hide separators
+  &.font,
+  &.file { separator { background-color: transparent; }}
 
   //inline-toolbar buttons
   .inline-toolbar &, .inline-toolbar &:backdrop {
@@ -1249,7 +1247,6 @@ headerbar {
       &.flat {
         @include button(undecorated);
         color: $b_color;
-        outline-color: transparentize($b_color, 0.7);
       }
       &:hover {
         @include button(suggested_destructive, lighten($b_color, 10%), $b_fg);
@@ -1409,11 +1406,14 @@ headerbar {
 // Tree Views
 //
 treeview.view {
-  -GtkTreeView-grid-line-width: 1;
-  -GtkTreeView-grid-line-pattern: '';
-  -GtkTreeView-tree-line-width: 1;
-  -GtkTreeView-tree-line-pattern: '';
-  -GtkTreeView-expander-size: 16;
+  @at-root * {
+    -GtkTreeView-horizontal-separator: 4;
+    -GtkTreeView-grid-line-width: 1;
+    -GtkTreeView-grid-line-pattern: '';
+    -GtkTreeView-tree-line-width: 1;
+    -GtkTreeView-tree-line-pattern: '';
+    -GtkTreeView-expander-size: 16;
+  }
 
   border-left-color: transparentize($fg_color, 0.85);   // this is actually the tree lines color,
   border-top-color: transparentize(black, 0.9);         // while this is the grid lines color, better then nothing
@@ -2509,28 +2509,25 @@ calendar {
   padding: 2px;
 
   &:selected {
-    background-color: $selected_bg_color;
-    color: $selected_fg_color;
+    @extend %selected_items;
     border-radius: 1.5px;
   }
+
   &.header {
     color: $fg_color;
     border: none;
-    border-radius: 0;
   }
-  &.button, &.button:focus {
-    color: transparentize($fg_color,0.55);
-    @include button(undecorated);
 
-    &:hover {
-      color: $fg_color;
-    }
-    &:disabled {
-      color: $insensitive_fg_color;
-      background-color: transparent;
-      background-image: none;
-    }
+  &.button {
+    @extend %undecorated_button;
+
+    color: transparentize($fg_color,0.55);
+
+    &:hover { color: $fg_color; }
+
+    &:disabled { color: $insensitive_fg_color; }
   }
+
   &:indeterminate { color: gtkalpha(currentColor,0.55); }
   &.highlight { color: $fg_color; }
 }
@@ -2784,27 +2781,27 @@ paned {
 //
 // GtkInfoBar
 //
-infobar { border-style: none; }
+infobar {
+  border-style: none;
 
-.info,
-.question,
-.warning,
-.error {
-  background-color: $selected_bg_color;
-  color: $selected_fg_color;
+  &.info,
+  &.question,
+  &.warning,
+  &.error {
+    background-color: $selected_bg_color;
+    color: $selected_fg_color;
+    caret-color: currentColor;
 
-  button { @extend %selected-button }
+    button { @extend %selected-button }
 
-  label:selected {
-    &:focus, &:hover, & {
+    selection {
       color: $selected_bg_color;
       background-color: $selected_fg_color;
     }
+
+    *:link { @extend %link_selected; }
   }
-
-  *:link { @extend %link_selected; }
 }
-
 
 //
 // Buttons on selected backgrounds
@@ -2813,7 +2810,6 @@ infobar { border-style: none; }
 
   @at-root %normal_selected_button, & {
     color: $selected_fg_color;
-    outline-color: transparentize($selected_fg_color, 0.7);
     background-color: transparentize($selected_fg_color, 1);
     border-color: transparentize($selected_fg_color, 0.5);
   }
@@ -2829,13 +2825,11 @@ infobar { border-style: none; }
   }
   &:hover {
     color: $selected_fg_color;
-    outline-color: transparentize($selected_fg_color, 0.7);
     background-color: transparentize($selected_fg_color, 0.8);
     border-color: transparentize($selected_fg_color, 0.2);
   }
   &:active, &:active:hover, &:checked {
     color: $selected_bg_color;
-    outline-color: transparentize($selected_bg_color, 0.7);
     background-color: $selected_fg_color;
     border-color: $selected_fg_color;
   }
@@ -3151,7 +3145,6 @@ headerbar,
 
   @at-root %nobg_selected_items, & {
     color: $selected_fg_color;
-    outline-color: transparentize($selected_fg_color, 0.7);
 
     &:disabled { color: mix($selected_fg_color, $selected_bg_color, 50%); }
   }
