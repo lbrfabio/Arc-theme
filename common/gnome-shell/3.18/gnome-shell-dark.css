@@ -1218,7 +1218,7 @@ StScrollBar {
   font-weight: bold;
   border-radius: 3px;
   padding: 4px 12px;
-  color: #ffffff;
+  color: white;
   background-color: rgba(0, 0, 0, 0.7);
   text-align: center;
   -x-offset: 3px; }
