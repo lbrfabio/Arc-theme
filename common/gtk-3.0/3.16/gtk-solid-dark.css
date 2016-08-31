@@ -3101,10 +3101,6 @@ WingpanelWidgetsIndicatorPopover.popover {
 PantheonTerminalPantheonTerminalWindow.background {
   background-color: transparent; }
 
-TerminalWindow.background {
-    background-color: alpha(black, 0.95);
-}
-
 SwitchboardCategoryView .view:selected,
 SwitchboardCategoryView .view:selected:focus {
   color: #D3DAE3; }
