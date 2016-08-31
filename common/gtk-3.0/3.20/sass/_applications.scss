@@ -35,7 +35,7 @@ terminal-window {
 }
 
 .nautilus-desktop.nautilus-canvas-item {
-  color: $selected_fg_color;
+  color: white;
   text-shadow: 1px 1px transparentize(black, 0.4);
 
   &:active { color: $fg_color; }
@@ -482,7 +482,7 @@ button.documents-favorite:active:hover {
   }
 
   &:checked {
-    color: $selected_fg_color;
+    color: white;
     background-color: transparentize(black, 0.75);
     box-shadow: inset 0 -2px $selected_bg_color;
   }
@@ -575,7 +575,7 @@ button.documents-favorite:active:hover {
     border: 1px solid rgba(0, 0, 0, 0.35);
     border-radius: 3px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    background-image: linear-gradient(to bottom, white);
+    background-image: _solid(white);
     background-color: transparent;
 
   .title, .label {
