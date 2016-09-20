@@ -5,8 +5,7 @@ GeditNotebook.notebook,
 ScratchMainWindow .notebook,
 EphyNotebook.notebook,
 MidoriNotebook .notebook,
-TerminalWindow .notebook,
-PantheonTerminalPantheonTerminalWindow .notebook {
+TerminalWindow .notebook {
 
   tab.reorderable-page.top, tab.top {
     &:active, &.active-page, &.active-page:hover {
@@ -18,8 +17,7 @@ PantheonTerminalPantheonTerminalWindow .notebook {
   }
 }
 
-TerminalWindow .notebook,
-PantheonTerminalPantheonTerminalWindow .notebook {
+TerminalWindow .notebook {
 
   tab.reorderable-page.top, tab.top {
     padding-top: 7px;
@@ -702,6 +700,11 @@ MarlinViewWindow {
   text-shadow: 0 1px 2px transparentize(black, 0.4);
   icon-shadow: 0 1px 2px transparentize(black, 0.4);
 
+  .maximized {
+    background-color: $panel_bg;
+    box-shadow: inset 0 -1px darken($panel_bg, 7%);
+  }
+
   &-shadow {
     background-image: none;
     background-color: transparent;
@@ -747,6 +750,13 @@ MarlinViewWindow {
     padding-top: 8px;
     padding-bottom: 8px;
   }
+
+  .color-light & {
+    color: transparentize(black, 0.35);
+
+    text-shadow: 0 0 2px transparentize(white, 0.7), 0 1px 0 transparentize(white, 0.75);
+    icon-shadow: 0 0 2px transparentize(white, 0.7), 0 1px 0 transparentize(white, 0.75);
+  }
 }
 
 .panel-app-button > GtkWidget > GtkWidget:first-child {
@@ -762,23 +772,23 @@ MarlinViewWindow {
 WingpanelWidgetsIndicatorPopover.popover {
   padding: 0;
 
+  font: initial;
   text-shadow: none;
   icon-shadow: none;
+
+  .sidebar { background: none; }
 
   .menuitem {
     padding: 5px;
     outline-color: transparent;
     text-shadow: none;
     icon-shadow: none;
-    border: solid transparent;
-    border-width: 1px 0;
 
     GtkLabel, GtkImage { padding: 0 3px; }
 
     &:hover, &:active {
-      background-color: if($variant == 'light', transparentize(black, 0.96), transparentize(white, 0.95));
-      border: solid if($variant == 'light', transparentize(black, 0.92), transparentize(white, 0.93));
-      border-width: 1px 0;
+      color: $selected_fg_color;
+      background-color: $selected_bg_color;
     }
     *:insensitive { color: $insensitive_fg_color; }
   }
