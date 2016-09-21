@@ -270,6 +270,9 @@ button {
     background-color: #5294e2;
     background-clip: border-box;
     transition-duration: 50ms; }
+    button:active:not(:disabled) label:disabled, button:checked:not(:disabled) label:disabled {
+      color: inherit;
+      opacity: 0.6; }
   button:active {
     color: #5c616c; }
   button:active:hover, button:checked {
@@ -788,6 +791,10 @@ spinbutton:not(.vertical) > button:hover:not(:active),
 spinbutton:not(.vertical) > button:hover + button {
   box-shadow: inset 1px 0 #cfd6e6; }
 
+spinbutton:not(.vertical) > button:disabled + button:not(:disabled):not(:active):not(:checked):not(:hover),
+spinbutton:not(.vertical) > button:not(:disabled):not(:active):not(:checked):not(:hover) + button:disabled {
+  box-shadow: inset 1px 0 rgba(207, 214, 230, 0.5); }
+
 spinbutton:not(.vertical) > button:first-child:hover:not(:active),
 spinbutton:not(.vertical) > button.up:dir(rtl):hover:not(:active),
 spinbutton:not(.vertical) > entry + button:not(:active):hover {
@@ -1268,6 +1275,9 @@ window.csd > .titlebar:not(headerbar):backdrop {
   border-left-style: none; }
 
 .primary-toolbar spinbutton:not(.vertical) > button:hover:not(:active), headerbar spinbutton:not(.vertical) > button:hover:not(:active), .primary-toolbar spinbutton:not(.vertical) > button:hover + button, headerbar spinbutton:not(.vertical) > button:hover + button {
+  box-shadow: inset 1px 0 rgba(82, 93, 118, 0.1); }
+
+.primary-toolbar spinbutton:not(.vertical) > button:disabled + button:not(:disabled):not(:active):not(:checked):not(:hover), headerbar spinbutton:not(.vertical) > button:disabled + button:not(:disabled):not(:active):not(:checked):not(:hover), .primary-toolbar spinbutton:not(.vertical) > button:not(:disabled):not(:active):not(:checked):not(:hover) + button:disabled, headerbar spinbutton:not(.vertical) > button:not(:disabled):not(:active):not(:checked):not(:hover) + button:disabled {
   box-shadow: inset 1px 0 rgba(82, 93, 118, 0.1); }
 
 .primary-toolbar spinbutton:not(.vertical) > button:first-child:hover:not(:active), headerbar spinbutton:not(.vertical) > button:first-child:hover:not(:active), .primary-toolbar spinbutton:not(.vertical) > entry + button:not(:active):hover, headerbar spinbutton:not(.vertical) > entry + button:not(:active):hover {
@@ -3335,6 +3345,59 @@ button.documents-favorite:active:hover {
 .tr-workarea undershoot,
 .tr-workarea overshoot {
   border-color: transparent; }
+
+#gf-bubble, #gf-bubble.solid,
+#gf-osd-window,
+#gf-osd-window.solid,
+#gf-input-source-popup,
+#gf-input-source-popup.solid,
+#gf-candidate-popup,
+#gf-candidate-popup.solid {
+  color: #cfd5de;
+  background-color: #353945;
+  border: 1px solid #23262e;
+  border-radius: 2px; }
+
+#gf-bubble levelbar block.low, #gf-bubble levelbar block.high, #gf-bubble levelbar block.full,
+#gf-osd-window levelbar block.low,
+#gf-osd-window levelbar block.high,
+#gf-osd-window levelbar block.full,
+#gf-input-source-popup levelbar block.low,
+#gf-input-source-popup levelbar block.high,
+#gf-input-source-popup levelbar block.full,
+#gf-candidate-popup levelbar block.low,
+#gf-candidate-popup levelbar block.high,
+#gf-candidate-popup levelbar block.full {
+  background-color: #5294e2;
+  border-color: #5294e2; }
+
+#gf-bubble levelbar block.empty,
+#gf-osd-window levelbar block.empty,
+#gf-input-source-popup levelbar block.empty,
+#gf-candidate-popup levelbar block.empty {
+  background-color: #2a2d37; }
+
+#gf-bubble levelbar trough,
+#gf-osd-window levelbar trough,
+#gf-input-source-popup levelbar trough,
+#gf-candidate-popup levelbar trough {
+  background: none; }
+
+#gf-input-source {
+  min-height: 32px;
+  min-width: 40px; }
+  #gf-input-source:selected {
+    color: #ffffff;
+    background-color: #5294e2;
+    border-radius: 2px; }
+
+gf-candidate-box label {
+  padding: 3px; }
+
+gf-candidate-box:hover, gf-candidate-box:selected {
+  color: #ffffff;
+  background-color: #5294e2;
+  border-radius: 2px; }
 
 .mate-panel-menu-bar, .mate-panel-menu-bar menubar,
 panel-toplevel.background,
