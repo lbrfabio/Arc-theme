@@ -1461,9 +1461,10 @@ StScrollBar {
   padding-left: 7px;}
 
 .workspace-thumbnail-indicator {
-  border: 3px solid rgba(82, 148, 226, 0.8);
-  border-radius: 1px;
-  padding: 1px; }
+  border: 0px solid rgba(82, 148, 226, 0.8);
+  border-left-width: 3px;
+  border-radius: 0px;
+  padding: 6px; }
 
 .search-display > StBoxLayout,
 .all-apps,
