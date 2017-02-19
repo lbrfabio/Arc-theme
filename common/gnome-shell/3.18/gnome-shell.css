@@ -1249,7 +1249,13 @@ StScrollBar {
 .right #dash .app-well-app:hover .overview-icon,
 .bottom #dash .app-well-app:hover .overview-icon,
 .top #dash .app-well-app:hover .overview-icon {
-  background-color: #5294e2; }
+  background-color: rgba(0, 0, 0, 0.17); }
+
+#dash .app-well-app:focus .overview-icon,
+.right #dash .app-well-app:focus .overview-icon,
+.bottom #dash .app-well-app:focus .overview-icon,
+.top #dash .app-well-app:focus .overview-icon {
+    background-color: #5294e2; }
 
 #dash .app-well-app:active .overview-icon,
 .right #dash .app-well-app:active .overview-icon,
@@ -1291,6 +1297,7 @@ StScrollBar {
   background-color: rgba(0, 0, 0, 0.7);
   color: #5294e2; }
 
+.show-apps:focus .overview-icon,
 .show-apps:active .overview-icon,
 .show-apps:active .show-apps-icon,
 .show-apps:checked .overview-icon,
