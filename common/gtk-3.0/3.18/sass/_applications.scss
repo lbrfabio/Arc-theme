@@ -155,7 +155,7 @@ $disk_space_free: darken($bg_color, 3%);
 }
 
 // View
-NautilusListView .view { border-bottom: 1px solid $borders_color; }
+NautilusListView .view { border-bottom: 1px solid #edf0f5; }
 
 //
 // Nemo
@@ -807,4 +807,16 @@ PantheonTerminalPantheonTerminalWindow.background {
 SwitchboardCategoryView .view:selected,
 SwitchboardCategoryView .view:selected:focus {
   color: $fg_color;
+}
+
+//
+// Chromium
+//
+GtkWindow.background.chromium {
+  // See details in nav_button_provider_gtk3.cc
+  .header-bar.titlebar .button.titlebutton {
+    // move button spacing from padding to margin
+    margin: 0px ((24px - 16px) / 2);
+    padding: 0px;
+  }
 }

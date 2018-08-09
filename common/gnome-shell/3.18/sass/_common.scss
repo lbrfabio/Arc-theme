@@ -26,7 +26,7 @@ $asset_path: if($variant == 'dark', dark-assets, light-assets);
 // Globals
 //
 $font-size: 9;
-$font-family: Futura Bk bt, Cantarell, Sans-Serif;
+$font-family: Roboto, Sans-Serif;
 $_bubble_bg_color: opacify($osd_bg_color,0.25);
 $_bubble_fg_color: $osd_fg_color;
 $_bubble_borders_color: transparentize($osd_fg_color,0.8);
@@ -504,7 +504,7 @@ StScrollBar {
     color: $warning_color;
   }
 
-  &-user-icon {
+  &-icon {
     border-radius: 2px;
     background-size: contain;
     width: 48px;
@@ -887,11 +887,12 @@ StScrollBar {
   $_panel_fg_color: $_shell_fg_color;
 
   font-weight: bold;
-  height: 2.1em;
+  /*height: 2.1em;
   min-height: 27px;
   background-gradient-direction: none;
   background-color: transparent;
-  border-bottom-width: 0;
+  border-bottom-width: 0;*/
+  height: 1.9em;
   border-image: url('common-assets/panel/panel.svg') 1 1 1 1;
 
   // Fix dynamic top bar extension
@@ -932,6 +933,7 @@ StScrollBar {
     -minimum-hpadding: 6px;
     font-weight: bold;
     color: $_panel_fg_color;
+    text-shadow: none;
     transition-duration: 100ms;
     border-bottom-width: 1px;
     border-color: transparent;
@@ -943,11 +945,23 @@ StScrollBar {
       margin-right: 0px;
     }
 
+    .system-status-icon,
+    .app-menu-icon > StIcon,
+    .popup-menu-arrow {
+      icon-shadow: none;
+    }
+
     &:hover {
       color: $_panel_fg_color;
       background-color: transparentize(black, 0.83);
       border-bottom-width: 1px;
       border-color: transparent;
+
+      .system-status-icon,
+      .app-menu-icon > StIcon,
+      .popup-menu-arrow {
+        icon-shadow: none;
+      }
     }
 
     &:active, &:overview, &:focus, &:checked {
@@ -960,7 +974,7 @@ StScrollBar {
       & > .system-status-icon { icon-shadow: none; }
     }
 
-    .system-status-icon { icon-size: 16px; padding: 0 4px; }
+    .system-status-icon { color: $selected_fg_color; icon-size: 16px; padding: 0 4px; }
     .unlock-screen &,
     .login-screen &,
     .lock-screen & {
@@ -969,11 +983,16 @@ StScrollBar {
     }
   }
 
+  .panel-button > *{
+    color: $selected_fg_color;
+  }
+
     #panelActivities.panel-button { -natural-hpadding: 12px; }
 
   .panel-status-indicators-box,
   .panel-status-menu-box {
     spacing: 2px;
+    color: $selected_fg_color;
   }
 
   // spacing between power icon and (optional) percentage label
@@ -1617,6 +1636,7 @@ StScrollBar {
   color: $osd_fg_color;
   background-color: $dark_sidebar_bg;
   border-color: rgba(0,0,0,0.4);
+  border-width: 1px;
   padding: 4px 0;
   border-radius: 0 3px 3px 0;
 
@@ -1648,6 +1668,7 @@ StScrollBar {
 
 //osd tooltip
 .dash-label {
+  font-weight: bold;
   border-radius: 3px;
   padding: 4px 12px;
   color: $_shell_fg_color;
@@ -1668,6 +1689,13 @@ StScrollBar {
   .right &:hover .overview-icon,
   .bottom &:hover .overview-icon,
   .top &:hover .overview-icon {
+    background-color: rgba(0, 0, 0, 0.17);
+  }
+
+  &:focus .overview-icon,
+  .right &:focus .overview-icon,
+  .bottom &:focus .overview-icon,
+  .top &:focus .overview-icon {
     background-color: $selected_bg_color;
   }
 
@@ -1694,6 +1722,11 @@ StScrollBar {
     height: 4px;
   }
 
+  // Add missing 1px margin for finer .show-apps-icon alignment
+  // via margin property instead to keep 1px smaller .show-apps-icon size
+  // like standard #dash styling. Better than 1px transparent border.
+  .show-apps .overview-icon { margin: 1px; }
+
   @each $var in 1, 2, 3, 4 {
     .running#{$var} .app-well-app-running-dot {
       background-image: url("common-assets/dash/running#{$var}.svg");
@@ -1704,6 +1737,7 @@ StScrollBar {
 .show-apps {
 
   .overview-icon {
+    padding: 7px;
     background-color: transparentize(black, 0.5);
     border-radius: 2px;
     border: 0px solid;
@@ -1714,6 +1748,7 @@ StScrollBar {
     color: $selected_bg_color;
   }
 
+  &:focus .overview-icon,
   &:active .overview-icon,
   &:active .show-apps-icon,
   &:checked .overview-icon,
@@ -1893,19 +1928,20 @@ StScrollBar {
 .workspace-thumbnails,
 .workspace-thumbnails-left:rtl {
   padding-right: 7px;
-  border-image: url("common-assets/dash/dash-right.svg") 9 9 9 9;
+  /*border-image: url("common-assets/dash/dash-right.svg") 9 9 9 9;*/
 }
 
 .workspace-thumbnails:rtl,
 .workspace-thumbnails-left {
   padding-left: 7px;
-  border-image: url("common-assets/dash/dash-left.svg") 9 9 9 9;
+  /*border-image: url("common-assets/dash/dash-left.svg") 9 9 9 9;*/
 }
 
 .workspace-thumbnail-indicator {
-  border: 4px solid transparentize($selected_bg_color, 0.2);
-  border-radius: 1px;
-  padding: 1px;
+  border: 0px solid transparentize($selected_bg_color, 0.2);
+  border-radius: 0px;
+  border-left-width: 3px;
+  padding: 6px;
 }
 
 //Some hacks I don't even
@@ -2222,8 +2258,8 @@ $legacy_icon_size: 24px;
     spacing: 12px;
     padding: .2em;
     width: 23em;
-    &:expanded .login-dialog-user-list-item:focus { background-color: $selected_bg_color; color: $selected_fg_color; }
-    &:expanded .login-dialog-user-list-item:logged-in { border-right: 2px solid $selected_bg_color; }
+    &:expanded .login-dialog-user-list-item:focus { background-color: rgba(255,255,255,0.1); color: $selected_fg_color; }
+    &:expanded .login-dialog-user-list-item:logged-in { border-right: 2px solid rgba(255,255,255,0.1); }
   }
   .login-dialog-user-list-item {
     border-radius: 5px;
@@ -2231,7 +2267,7 @@ $legacy_icon_size: 24px;
     color: darken($osd_fg_color,30%);
     &:ltr { padding-right: 1em; }
     &:rtl { padding-left: 1em; }
-    &:hover { background-color: $selected_bg_color; color: $selected_fg_color; }
+    &:hover { background-color: rgba(255,255,255,0.1); color: $selected_fg_color; }
     .login-dialog-timed-login-indicator {
       height: 2px;
       margin: 2px 0 0 0;
@@ -2343,7 +2379,8 @@ $legacy_icon_size: 24px;
 }
 
 #lockDialogGroup {
-  background: #2e3436 url(misc/noise-texture.png);
+  /*background: #2e3436 url(misc/noise-texture.png);*/
+  background: #202020;
   background-repeat: repeat;
 }
 
