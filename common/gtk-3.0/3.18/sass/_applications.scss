@@ -154,8 +154,8 @@ $disk_space_free: darken($bg_color, 3%);
   }
 }
 
-// View
-NautilusListView .view { border-bottom: 1px solid #edf0f5; }
+// View #edeef0
+.nautilus-list-view .view { border-bottom: 1px solid lighten($borders_color, 6%); }
 
 //
 // Nemo
