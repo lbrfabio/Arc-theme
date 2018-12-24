@@ -26,7 +26,7 @@ $asset_path: if($variant == 'dark', dark-assets, light-assets);
 // Globals
 //
 $font-size: 9;
-$font-family: Futura Bk bt, Cantarell, Sans-Serif;
+$font-family: Roboto, Sans-Serif;
 $_bubble_bg_color: opacify($osd_bg_color,0.25);
 $_bubble_fg_color: $osd_fg_color;
 $_bubble_borders_color: transparentize($osd_fg_color,0.8);
@@ -504,7 +504,7 @@ StScrollBar {
     color: $warning_color;
   }
 
-  &-user-icon {
+  &-icon {
     border-radius: 2px;
     background-size: contain;
     width: 48px;
@@ -887,17 +887,18 @@ StScrollBar {
   $_panel_fg_color: $_shell_fg_color;
 
   font-weight: bold;
-  height: 2.1em;
+  /*height: 2.1em;
   min-height: 27px;
   background-gradient-direction: none;
   background-color: transparent;
-  border-bottom-width: 0;
-  border-image: none;
+  border-bottom-width: 0;*/
+  height: 1.9em;
+  border-image: url('common-assets/panel/panel.svg') 1 1 1 1;
 
   &.solid { border-image: url('common-assets/panel/panel.svg') 1 1 1 1; }
 
   // Fix dynamic top bar extension
-  &.dynamic-top-bar-white-btn { border-image: none; }
+  &.dynamic-top-bar-white-btn { border-image: url('common-assets/panel/panel-overview.svg') 1 1 1 1; }
 
   &.unlock-screen,
   &.login-screen,
@@ -906,7 +907,7 @@ StScrollBar {
     border-image: none;
   }
 
-  &:overview { border-image: none; }
+  &:overview { border-image: url('common-assets/panel/panel-overview.svg') 1 1 1 1; }
 
   #panelLeft, #panelCenter { // spacing between activities<>app menu and such
     spacing: 8px;
@@ -1636,6 +1637,7 @@ StScrollBar {
   color: $osd_fg_color;
   background-color: $dark_sidebar_bg;
   border-color: rgba(0,0,0,0.4);
+  border-width: 1px;
   padding: 4px 0;
   border-radius: 0 3px 3px 0;
 
@@ -1667,6 +1669,7 @@ StScrollBar {
 
 //osd tooltip
 .dash-label {
+  font-weight: bold;
   border-radius: 3px;
   padding: 4px 12px;
   color: $_shell_fg_color;
@@ -1728,6 +1731,7 @@ StScrollBar {
 .show-apps {
 
   .overview-icon {
+    padding: 7px;
     background-color: transparentize(black, 0.5);
     border-radius: 2px;
     border: 0px solid;
@@ -1738,6 +1742,7 @@ StScrollBar {
     color: $selected_bg_color;
   }
 
+  &:focus .overview-icon,
   &:active .overview-icon,
   &:active .show-apps-icon,
   &:checked .overview-icon,
@@ -1917,19 +1922,20 @@ StScrollBar {
 .workspace-thumbnails,
 .workspace-thumbnails-left:rtl {
   padding-right: 7px;
-  border-image: url("common-assets/dash/dash-right.svg") 9 9 9 9;
+  /*border-image: url("common-assets/dash/dash-right.svg") 9 9 9 9;*/
 }
 
 .workspace-thumbnails:rtl,
 .workspace-thumbnails-left {
   padding-left: 7px;
-  border-image: url("common-assets/dash/dash-left.svg") 9 9 9 9;
+  /*border-image: url("common-assets/dash/dash-left.svg") 9 9 9 9;*/
 }
 
 .workspace-thumbnail-indicator {
-  border: 4px solid transparentize($selected_bg_color, 0.2);
-  border-radius: 1px;
-  padding: 1px;
+  border: 0px solid transparentize($selected_bg_color, 0.2);
+  border-radius: 0px;
+  border-left-width: 3px;
+  padding: 6px;
 }
 
 //Some hacks I don't even
@@ -2246,8 +2252,8 @@ $legacy_icon_size: 24px;
     spacing: 12px;
     padding: .2em;
     width: 23em;
-    &:expanded .login-dialog-user-list-item:focus { background-color: $selected_bg_color; color: $selected_fg_color; }
-    &:expanded .login-dialog-user-list-item:logged-in { border-right: 2px solid $selected_bg_color; }
+    &:expanded .login-dialog-user-list-item:focus { background-color: rgba(255,255,255,0.1); color: $selected_fg_color; }
+    &:expanded .login-dialog-user-list-item:logged-in { border-right: 2px solid rgba(255,255,255,0.1); }
   }
   .login-dialog-user-list-item {
     border-radius: 5px;
@@ -2255,7 +2261,7 @@ $legacy_icon_size: 24px;
     color: darken($osd_fg_color,30%);
     &:ltr { padding-right: 1em; }
     &:rtl { padding-left: 1em; }
-    &:hover { background-color: $selected_bg_color; color: $selected_fg_color; }
+    &:hover { background-color: rgba(255,255,255,0.1); color: $selected_fg_color; }
     .login-dialog-timed-login-indicator {
       height: 2px;
       margin: 2px 0 0 0;
@@ -2367,7 +2373,8 @@ $legacy_icon_size: 24px;
 }
 
 #lockDialogGroup {
-  background: #2e3436 url(misc/noise-texture.png);
+  /*background: #2e3436 url(misc/noise-texture.png);*/
+  background: #202020;
   background-repeat: repeat;
 }
 

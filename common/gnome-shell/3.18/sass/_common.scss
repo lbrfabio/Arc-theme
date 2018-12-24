@@ -895,8 +895,10 @@ StScrollBar {
   height: 1.9em;
   border-image: url('common-assets/panel/panel.svg') 1 1 1 1;
 
+  &.solid { border-image: url('common-assets/panel/panel.svg') 1 1 1 1; }
+
   // Fix dynamic top bar extension
-  &.dynamic-top-bar-white-btn { border-image: none; }
+  &.dynamic-top-bar-white-btn { border-image: url('common-assets/panel/panel-overview.svg') 1 1 1 1; }
 
   &.unlock-screen,
   &.login-screen,
