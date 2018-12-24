@@ -33,7 +33,7 @@ It is strongly encouraged to submit pull-requests to suggest fixes and enhanceme
 | Gentoo/Funtoo | `x11-themes/arc-theme` from the [Scriptkitties Overlay][sk-overlay] |
 | Solus | `arc-gtk-theme` |
 | Ubuntu 16.10 - 18.04 | `arc-theme`
-| Ubuntu 16.04 - 18.04 | `arc-theme` from [fossfreedom/arc-gtk-theme-daily](https://launchpad.net/~fossfreedom/+archive/ubuntu/arc-gtk-theme-daily) |
+| Ubuntu 16.04 - 18.10 | `arc-theme` from [fossfreedom/arc-gtk-theme-daily](https://launchpad.net/~fossfreedom/+archive/ubuntu/arc-gtk-theme-daily) |
 | FreeBSD | `x11-themes/gtk-arc-themes` |
 
 --
@@ -43,17 +43,20 @@ It is strongly encouraged to submit pull-requests to suggest fixes and enhanceme
 To build the theme the following packages are required
 * `autoconf`
 * `automake`
-* `sassc`
+* `sassc` for GTK 3, Cinnamon, or GNOME Shell
 * `pkg-config` or `pkgconfig` for Fedora
-* `libgtk-3-dev` for Debian based distros or `gtk3-devel` for RPM based distros
 * `git` to clone the source directory
-* `optipng`
-*  `inkscape`
+* `optipng` for GTK 2, GTK 3, or XFWM
+* `inkscape` for GTK 2, GTK 3, or XFWM
+
+The following packages are optionally required
+* `gnome-shell`for auto-detecting the GNOME Shell version
+* `libgtk-3-dev` for Debian based distros or `gtk3-devel` for RPM based distros, for auto-detecting the GTK3 version
 
 **Note:** For distributions which don't ship separate development packages, just the GTK 3 package is needed instead of the `-dev` packages.
 
 For the theme to function properly, install the following
-* GNOME Shell 3.18 - 3.26, GTK 3.18 - 3.22
+* GNOME Shell 3.18 - 3.30, GTK 3.18 - 3.24
 * The `gnome-themes-extra` package
 * The murrine engine. This has different names depending on the distro.
   * `gtk-engine-murrine` (Arch Linux)
@@ -77,26 +80,25 @@ Clone the git repository with
 
 Other options to pass to autogen.sh are
 
-    --disable-transparency     disable transparency in the GTK3 theme
-    --disable-light            disable Arc Light support
-    --disable-darker           disable Arc Darker support
-    --disable-dark             disable Arc Dark support
-    --disable-cinnamon         disable Cinnamon support
-    --disable-gnome-shell      disable GNOME Shell support
-    --disable-gtk2             disable GTK2 support
-    --disable-gtk3             disable GTK3 support
-    --disable-metacity         disable Metacity support
-    --disable-unity            disable Unity support
-    --disable-xfwm             disable XFWM support
-    --disable-plank            disable Plank theme support
-    --disable-openbox          disable Openbox support
+    --disable-transparency         disable transparency in the GTK3 theme
+    --disable-light                disable Arc Light support
+    --disable-darker               disable Arc Darker support
+    --disable-dark                 disable Arc Dark support
+    --disable-cinnamon             disable Cinnamon support
+    --disable-gnome-shell          disable GNOME Shell support
+    --disable-gtk2                 disable GTK2 support
+    --disable-gtk3                 disable GTK3 support
+    --disable-metacity             disable Metacity support
+    --disable-unity                disable Unity support
+    --disable-xfwm                 disable XFWM support
+    --disable-plank                disable Plank theme support
+    --disable-openbox              disable Openbox support
 
-    --with-gnome=<version>     build the theme for a specific GNOME version (3.18, 3.20, 3.22)
-                               Note 1: Normally the correct version is detected automatically and this
-                               option should not be needed.
-                               Note 2: For GNOME 3.24 and 3.26, use --with-gnome=3.22
-                               (this works for now, the build system will be improved in the future)
-    --with-custom=<script>     run the executable script file in the custom subfolder
+    --with-gnome-shell=<version>   build the gnome-shell theme for a specific version
+    --with-gtk3=<version>          build the GTK3 theme for a specific version
+                                   Note: Normally the correct version is detected automatically
+                                   and these options should not be needed.
+    --with-custom=<script>         run the executable script file in the custom subfolder
 
 After the installation is complete the theme can be activated with `gnome-tweak-tool` or a similar program by selecting `Arc`, `Arc-Darker` or `Arc-Dark` as Window/GTK+ theme and `Arc` or `Arc-Dark` as GNOME Shell/Cinnamon theme.
 
@@ -118,11 +120,20 @@ from the cloned git repository, or
 A port of Arc for the Plasma 5 desktop with a few additions and extras. Available [here](https://github.com/PapirusDevelopmentTeam/arc-kde).
 
 ### Arc icon theme
-The Arc icon theme is available at https://github.com/horst3180/arc-icon-theme
+The Arc icon theme is available at https://github.com/NicoHood/arc-icon-theme
 
 ### Plank theme
 As of version `20180114` the plank theme will be installed along with the normal arc gtk theme. You can disable the install by passing `disable-plank` to the autogen command.
 Now open the Plank preferences window by executing `plank --preferences` from a terminal and select `Gtk+` as the theme.
+
+### FirefoxColor theme
+Arc color palettes for FirefoxColor testpilot project
+
+1.[Arc](https://color.firefox.com/?theme=XQAAAALsAAAAAAAAAABBqYhm849SCiazH1KEGccwS-xNVAWBveAusLC2VAlvlSjJ6UJSeqAgCYbdusEoPO6gs3O7v6uHbeft01vfMj--IcmWccV5ZVhbS5pAY21H4rQoo83UfS5UcAgLsFRnmMUloj0SFmW1HehCUMDfDxPPF1kUuA9qWMRgNi28lIsiXLMPZZcTMJdrmyjo335zNimxUcokvCK-KCKaas3H1WasbB4OVMJidW2cC2pVrAp_-pQmAA)
+
+2.[Arc-Dark](https://color.firefox.com/?theme=XQAAAALsAAAAAAAAAABBqYhm849SCiazH1KEGccwS-xNVAVYwOBtiY0uPWyYE7WQD-5SgdZ71r2F-lXEQxrGAEzv_buK8bCyok70SsUy0GeciWa6veHgAFpeOvR5esr0TgHrmzAVtbaluSV2pYGKFkF03u_F69WpX-5y0OWddI2Y12nn6XZrfhTCe6wjAGRgrpfgKzbG8oTgp9v362NBpHcLnPzzzzC_3PGq4PfhQJimy-2PSgzHFoG6322X_-hAUAA)
+
+3.[Arc-Darker](https://color.firefox.com/?theme=XQAAAALsAAAAAAAAAABBqYhm849SCiazH1KEGccwS-xNVAWBveAusLC2VAlvlSjJ6UJSeqAgCYbdusEoPO6gs3O7v6uHbeft01vfMkT1y4Tf1nzX1xYaRp0u6XBPage606lAwQt0F0O7Q6pf8R-lAjw8ljDMgG2fgvNk2K-ZUhapxWWNnKLb0LTrm1yLUWJYMgTx2cr9o4MWazvWLg9DPQcdumiH0qiUFROpAtIMassKweMS9iAEenpp0qT_Et_AAA)
 
 ### Arc-Dark for Ubuntu Software Center
 The Arc Dark theme for the Ubuntu Software Center by [mervick](https://github.com/mervick) can be installed from [here](https://github.com/mervick/arc-dark-software-center). It solves readability issues with Arc Dark and the Ubuntu Software Center.
@@ -142,7 +153,7 @@ Arc is available under the terms of the GPL-3.0. See `COPYING` for details.
 
 ## Full Preview
 ![A full screenshot of the Arc theme](http://i.imgur.com/tD1OBQ3.png)
-<sub>Screenshot Details: Icons: [Arc](https://github.com/horst3180/arc-icon-theme) | Launcher Icons based on [White Pixel Icons](http://darkdawg.deviantart.com/art/White-Pixel-Icons-252310560) | [Wallpaper](https://pixabay.com/photo-869593/) | Font: Futura Bk bt</sub>
+<sub>Screenshot Details: Icons: [Arc](https://github.com/NicoHood/arc-icon-theme) | Launcher Icons based on [White Pixel Icons](http://darkdawg.deviantart.com/art/White-Pixel-Icons-252310560) | [Wallpaper](https://pixabay.com/photo-869593/) | Font: Futura Bk bt</sub>
 
-[sk-overlay]: https://c.darenet.org/scriptkitties/overlay
+[sk-overlay]: https://github.com/fkmclane/overlay/tree/master/x11-themes/arc-theme
 [NicoHood-fossfreedom]: https://launchpad.net/~fossfreedom/+archive/ubuntu/arc-gtk-theme-daily

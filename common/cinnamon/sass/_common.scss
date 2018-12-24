@@ -973,6 +973,7 @@ StScrollBar {
     border: none;
     box-shadow: none;
     background: none;
+    border-image: none;
     background-gradient-direction: none;
   }
 }
@@ -1277,6 +1278,7 @@ StScrollBar {
     padding-top: 0;
     padding-left: 8px;
     padding-right: 8px;
+    spacing: 4px;
     transition-duration: 100;
     color: transparentize($_shell_fg_color, 0.4);
 
@@ -1547,6 +1549,7 @@ StScrollBar {
   &-box {
     padding-left: 3px;
     padding-right: 3px;
+    spacing: 4px;
     color: $_shell_fg_color;
     text-shadow: none;
     transition-duration: 100;
