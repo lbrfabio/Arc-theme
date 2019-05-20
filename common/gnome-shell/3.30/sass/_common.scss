@@ -1671,6 +1671,17 @@ StScrollBar {
 .dash-item-container > StWidget {
 
   &, &:rtl, .right & {
+    margin: 0 8px;
+    padding: 0; }
+
+  .top &, .bottom & {
+    margin: 6px;
+    padding: 0; }
+}
+
+#dashtodockContainer .dash-item-container > StWidget {
+
+  &, &:rtl, .right & {
     margin: 4px 8px;
     padding: 0; }
 
