@@ -1679,9 +1679,7 @@ StScrollBar {
 
 #dashtodockContainer .dash-item-container > StWidget {
 
-  &, &:rtl, .right & { margin: 6px 6px; padding: 0; }
-
-  .top &, .bottom & { margin: 6px; padding: 0; }
+  &, &:rtl, .right & { padding: 6px; }
 }
 
 //osd tooltip
@@ -1736,7 +1734,7 @@ StScrollBar {
   // Add missing 1px margin for finer .show-apps-icon alignment
   // via margin property instead to keep 1px smaller .show-apps-icon size
   // like standard #dash styling. Better than 1px transparent border.
-  .show-apps .overview-icon { margin: 1px; }
+  .show-apps .overview-icon { margin: 0px; }
 
   @each $var in 1, 2, 3, 4 {
     .running#{$var} .app-well-app-running-dot {
