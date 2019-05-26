@@ -31,9 +31,10 @@ It is strongly encouraged to submit pull-requests to suggest fixes and enhanceme
 | Debian | `arc-theme` |
 | Fedora | `arc-theme` |
 | Gentoo/Funtoo | `x11-themes/arc-theme` from the [Scriptkitties Overlay][sk-overlay] |
+| Sabayon | `arc-theme`
 | Solus | `arc-gtk-theme` |
-| Ubuntu 16.10 - 18.04 | `arc-theme`
-| Ubuntu 16.04 - 18.10 | `arc-theme` from [fossfreedom/arc-gtk-theme-daily](https://launchpad.net/~fossfreedom/+archive/ubuntu/arc-gtk-theme-daily) |
+| Ubuntu 16.10 and later | `arc-theme`
+| Ubuntu 16.04 and later | `arc-theme` from [fossfreedom/arc-gtk-theme-daily](https://launchpad.net/~fossfreedom/+archive/ubuntu/arc-gtk-theme-daily) |
 | FreeBSD | `x11-themes/gtk-arc-themes` |
 
 --
@@ -56,7 +57,7 @@ The following packages are optionally required
 **Note:** For distributions which don't ship separate development packages, just the GTK 3 package is needed instead of the `-dev` packages.
 
 For the theme to function properly, install the following
-* GNOME Shell 3.18 - 3.30, GTK 3.18 - 3.24
+* GNOME Shell 3.18 - 3.32, GTK 3.18 - 3.24
 * The `gnome-themes-extra` package
 * The murrine engine. This has different names depending on the distro.
   * `gtk-engine-murrine` (Arch Linux)
@@ -98,8 +99,7 @@ Other options to pass to autogen.sh are
     --with-gtk3=<version>          build the GTK3 theme for a specific version
                                    Note: Normally the correct version is detected automatically
                                    and these options should not be needed.
-    --with-custom=<script>         run the executable script file in the custom subfolder
-
+    
 After the installation is complete the theme can be activated with `gnome-tweak-tool` or a similar program by selecting `Arc`, `Arc-Darker` or `Arc-Dark` as Window/GTK+ theme and `Arc` or `Arc-Dark` as GNOME Shell/Cinnamon theme.
 
 If the `--disable-transparency` option was used, the theme will be installed as `Arc-solid`, `Arc-Darker-solid` and `Arc-Dark-solid`.
