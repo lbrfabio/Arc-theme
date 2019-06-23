@@ -1944,20 +1944,22 @@ StScrollBar {
 .workspace-thumbnails,
 .workspace-thumbnails-left:rtl {
   padding-right: 7px;
-  /*border-image: url("common-assets/dash/dash-right.svg") 9 9 9 9;*/
+  background: none;
+  border: none;
 }
 
 .workspace-thumbnails:rtl,
 .workspace-thumbnails-left {
   padding-left: 7px;
-  /*border-image: url("common-assets/dash/dash-left.svg") 9 9 9 9;*/
+  background: none;
+  border: none;
 }
 
 .workspace-thumbnail-indicator {
   border: 0px solid transparentize($selected_bg_color, 0.2);
   border-radius: 0px;
   border-left-width: 3px;
-  padding: 6px;
+  padding: 0px 6px;
 }
 
 //Some hacks I don't even
