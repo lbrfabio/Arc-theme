@@ -1433,9 +1433,9 @@ StScrollBar {
     &:rtl { padding: 12px 12px 12px 0px; }
 
     > StIcon {
-      //icon-size: 32px;
+      icon-size: 32px;
       color: inherit;
-      icon-size: 1.09em;
+      //icon-size: 1.09em;
       -st-icon-style: symbolic;
     }
     > .fallback-window-icon {
@@ -2092,8 +2092,8 @@ StScrollBar {
 .notification-banner,
 .notification-banner:hover,
 .notification-banner:focus {
-  font-size: 24pt;
-  width: 13em;
+  @include fontsize($font-size);
+  width: 34em;
   margin: 10px;
   padding: 6px 4px;
   color: $fg_color;
