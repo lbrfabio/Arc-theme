@@ -2092,8 +2092,8 @@ StScrollBar {
 .notification-banner,
 .notification-banner:hover,
 .notification-banner:focus {
-  @include fontsize($font-size);
-  width: 34em;
+  @include fontsize($font-size * 3);
+  width: 11.5em;
   margin: 10px;
   padding: 6px 4px;
   color: $fg_color;
