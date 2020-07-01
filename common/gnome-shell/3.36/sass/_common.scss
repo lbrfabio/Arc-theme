@@ -2178,11 +2178,11 @@ StScrollBar {
 .notification-banner,
 .notification-banner:hover,
 .notification-banner:focus {
-  font-size: 24pt;
-  width: 13em;
+  font-size: 1em;
+  width: 34em;
   min-height: 0;
-  margin: 10px;
-  padding: 6px 4px;
+  margin: 9px;
+  padding: 6px;
 
   @extend %popup_menu;
 
