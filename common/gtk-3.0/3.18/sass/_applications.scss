@@ -199,10 +199,12 @@ NemoWindow {
         &:last-child:hover { box-shadow: inset 1px 0 $_linked_separator_color; }
     }
   }
-  
-  .nemo-inactive-pane .view, .nemo-inactive-pane iconview {
-    color: $insensitive_fg_color;
-    background-color: $base_color;
+
+  .nemo-inactive-pane {
+    .view, .view > header > button, iconview {
+      color: transparentize($fg_color, 0.3);
+      background-color: darken($base_color, 3%);
+    }
   }
 }
 
@@ -295,7 +297,7 @@ GeditFileBrowserWidget .toolbar {
 }
 
 .gedit-map-frame {
-  @if $variant=='light' { border-color: transparentize(black, 0.7); }
+  @if $variant!='dark' { border-color: transparentize(black, 0.7); }
 }
 
 .gedit-search-entry-occurrences-tag {
@@ -583,7 +585,7 @@ WnckPager {
 }
 
 NaTrayApplet {
-  -NaTrayApplet-icon-padding: 0;
+  -NaTrayApplet-icon-padding: 12;
   -NaTrayApplet-icon-size: 16;
 }
 

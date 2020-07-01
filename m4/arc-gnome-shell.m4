@@ -6,7 +6,7 @@ AC_DEFUN([ARC_GNOME_SHELL], [
         [gnome-shell],
         [AS_HELP_STRING(
             [--with-gnome-shell],
-            [gnome-shell minor version]
+            [GNOME Shell version]
         )],
         [GNOME_SHELL_VERSION="$withval"],
         [AC_CHECK_PROG(
@@ -16,15 +16,14 @@ AC_DEFUN([ARC_GNOME_SHELL], [
             [no]
         )
         AS_IF(
-            # Couldn't find gnome-shell from $PATH
             [test "x$GNOME_SHELL_FOUND" = xyes],
-            [GNOME_SHELL_VERSION=`gnome-shell --version | cut -d' ' -f3`],
-            [AC_MSG_ERROR([Could not determine GNOME Shell version. Install gnome-shell, or specify the version using '--with-gnome-shell=<version>' option.])]
+            [GNOME_SHELL_VERSION=`gnome-shell --version | cut -d' ' -f3`]
+            AC_MSG_RESULT([Detected GNOME Shell $GNOME_SHELL_VERSION]),
+            [AC_MSG_WARN([Could not find gnome-shell from \$PATH.])]
         )
         AS_IF(
-            # Found gnome-shell, but couldn't determine the version
             [test -z "$GNOME_SHELL_VERSION"],
-            [AC_MSG_ERROR([Could not determine GNOME Shell version. Try specifying the version using '--with-gnome-shell=<version>' option.])]
+            [AC_MSG_ERROR([Could not determine GNOME Shell version. Install GNOME Shell, or use the --with-gnome-shell=<version> option. Alternatively you can choose to not build the GNOME Shell theme with --disable-gnome-shell option.])]
         )]
     )
 
@@ -37,13 +36,15 @@ AC_DEFUN([ARC_GNOME_SHELL], [
 
     # Evenize the minor version for stable versions
     AS_IF(
+        [test "x$GNOME_SHELL_VERSMJR" != x3], [AC_MSG_ERROR([Invalid GNOME Shell version: $GNOME_SHELL_VERSION])],
+        [test "0$GNOME_SHELL_VERSMNR" -ge 35], [GNOME_SHELL_VERSION=3.36],
         [test `expr $GNOME_SHELL_VERSMNR % 2` != "0"],
         [GNOME_SHELL_VERSION="$GNOME_SHELL_VERSMJR.`expr $GNOME_SHELL_VERSMNR + 1`"]
     )
     AS_IF(
         [! test -e "$GNOME_SHELL_DIR/$GNOME_SHELL_VERSION"],
-        [AC_MSG_ERROR([Invalid gnome-shell version: $GNOME_SHELL_VERSION])]
+        [AC_MSG_ERROR([Invalid GNOME Shell version: $GNOME_SHELL_VERSION])]
     )
     AC_SUBST([GNOME_SHELL_VERSION])
-    AC_MSG_RESULT([Building for gnome-shell $GNOME_SHELL_VERSION])
+    AC_MSG_RESULT([Building GNOME Shell theme $GNOME_SHELL_VERSION])
 ])
