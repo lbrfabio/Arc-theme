@@ -1026,7 +1026,7 @@ toolbar {
   border-radius: 0  0 3px 3px;
 }
 
-searchbar > revealer > box {
+searchbar {
   background-color: $bg_color;
   border-style: solid;
   border-color: $borders_color;
@@ -1037,7 +1037,7 @@ searchbar > revealer > box {
   padding: 6px;
 }
 
-actionbar > revealer >  box {
+actionbar {
   padding: 6px;
   border-top: 1px solid $borders_color;
   background-color: darken($bg_color, 3%);
