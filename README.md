@@ -160,3 +160,4 @@ Arc is available under the terms of the GPL-3.0. See `COPYING` for details.
 
 [sk-overlay]: https://github.com/fkmclane/overlay/tree/master/x11-themes/arc-theme
 [NicoHood-fossfreedom]: https://launchpad.net/~fossfreedom/+archive/ubuntu/arc-gtk-theme-daily
+
