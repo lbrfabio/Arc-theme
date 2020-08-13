@@ -39,8 +39,15 @@ Those that show good quality submissions will be invited to become maintainers.
 | Ubuntu 16.04 and later | `arc-theme` from [fossfreedom/arc-gtk-theme-daily](https://launchpad.net/~fossfreedom/+archive/ubuntu/arc-gtk-theme-daily) |
 | FreeBSD | `x11-themes/gtk-arc-themes` |
 
-[![Packaging status](https://repology.org/badge/vertical-allrepos/arc-theme.svg)](https://repology.org/project/arc-theme/versions)
---
+Arc comes with themes for the following:
+* GTK 2
+* GTK 3 >=3.18
+* GNOME Shell >=3.18
+* Cinnamon >=2.8
+* Unity
+* Metacity
+* Xfwm
+* Plank
 
 ### Manual Installation
 
