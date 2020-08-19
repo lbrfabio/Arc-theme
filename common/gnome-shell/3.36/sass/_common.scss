@@ -831,19 +831,6 @@ StScrollBar {
     }
   }
 
-  &.lock-screen {
-    border: none;
-
-    .panel-button {
-      color: $osd_fg_color;
-      &:hover { color: $osd_fg_color; }
-      &:focus, &:active, &:checked {
-        color: $selected_fg_color;
-        border-color: transparent;
-      }
-    }
-  }
-
   #panelLeft, #panelCenter { // spacing between activities<>app menu and such
     spacing: 8px;
   }
@@ -858,7 +845,7 @@ StScrollBar {
       -panel-corner-border-color: black;
     }
 
-    &.lock-screen, &.login-screen, &.unlock-screen {
+    &.login-screen, &.unlock-screen {
       -panel-corner-radius: 0;
       -panel-corner-background-color: transparent;
       -panel-corner-border-color: transparent;
@@ -2458,6 +2445,31 @@ StScrollBar {
   &:hover {
     color: transparentize($fg_color, 0.3);
   }
+
+  & StIcon {
+    background-color: transparentize($osd_fg_color, 0.95);
+    border-radius: 99px;
+  }
+}
+
+.user-widget.vertical .user-icon {
+  icon-size: 128px;
+
+  & StIcon {
+    padding: 20px;
+    padding-top: 18px;
+    padding-bottom: 22px;
+    width: 88px; height: 88px;
+  }
+}
+
+.user-widget.horizontal .user-icon {
+  icon-size: 64px;
+
+  & StIcon {
+    padding: 12px;
+    width: 40px; height: 40px;
+  }
 }
 
 //
@@ -2483,12 +2495,30 @@ StScrollBar {
       &:insensitive { @include button(insensitive); }
     }
   }
+
+  .cancel-button,
+  .switch-user-button,
+  .login-dialog-session-list-button {
+    padding: 0;
+    border-radius: 99px;
+    width: 32px;
+    height: 32px;
+    border-color: transparentize($bg_color,0.7);
+    background-color: transparentize($bg_color,0.7);
+
+    StIcon { icon-size: 16px; }
+  }
+
+  .caps-lock-warning-label,
+  .login-dialog-message-warning {
+    color: $osd_fg_color;
+  }
 }
 
 .login-dialog-logo-bin { padding: 24px 0px; }
 .login-dialog-banner { color: if($variant!='dark', lighten($fg_color, 10%), darken($fg_color, 20%)); }
-.login-dialog-button-box { spacing: 5px; }
-.login-dialog-message-warning { color: $warning_color; }
+.login-dialog-button-box { width: 23em; spacing: 5px; }
+.login-dialog-message { text-align: center; }
 .login-dialog-message-hint { padding-top: 0; padding-bottom: 20px; }
 .login-dialog-user-selection-box { padding: 100px 0px; }
 .login-dialog-not-listed-label {
@@ -2526,19 +2556,24 @@ StScrollBar {
   &:focus .login-dialog-timed-login-indicator { background-color: $selected_fg_color; }
 }
 
-.login-dialog-username,
 .user-widget-label {
   color: $fg_color;
+}
+
+.user-widget.horizontal .user-widget-label {
   @include fontsize($font-size * 1.2);
   font-weight: bold;
-  text-align: left;
   padding-left: 15px;
 
-  .login-dialog-user-list-item:selected & { color: $selected_fg_color; }
+  &:ltr { padding-left: 14px; text-align: left; }
+  &:rtl { padding-right: 14px; text-align: right; }
 }
-.user-widget-label {
-  &:ltr { padding-left: 14px; }
-  &:rtl { padding-right: 14px; }
+
+.user-widget.vertical .user-widget-label {
+  @include fontsize($font-size * 1.5);
+  text-align: center;
+  font-weight: normal;
+  padding-top: 16px;
 }
 
 .login-dialog-prompt-layout {
@@ -2548,86 +2583,73 @@ StScrollBar {
   width: 23em;
 }
 
+.login-dialog-prompt-entry {
+  height: 1.5em;
+}
+
 .login-dialog-prompt-label {
   color: if($variant!='dark', lighten($fg_color, 10%), darken($fg_color, 20%));
   @include fontsize($font-size * 1.1);
   padding-top: 1em;
 }
 
-.login-dialog-session-list-button StIcon {
-  icon-size: 1.25em;
-}
-
-.login-dialog-session-list-button {
-  color: if($variant!='dark', lighten($fg_color, 20%), darken($fg_color, 30%));
-  &:hover,&:focus { color: $fg_color; }
-  &:active { color: if($variant!='dark', lighten($fg_color, 40%), darken($fg_color, 50%)); }
-}
-
 //
 // Screen Shield
 //
-.screen-shield-arrows {
-  padding-bottom: 3em;
-}
-
-.screen-shield-arrows Gjs_Arrow {
+.unlock-dialog-clock {
   color: white;
-  width: 80px;
-  height: 48px;
-  -arrow-thickness: 12px;
-  -arrow-shadow: 0 1px 1px rgba(0,0,0,0.4);
-}
-
-.screen-shield-clock {
-  color: white;
-  text-shadow: 0px 1px 2px rgba(0,0,0,0.6);
-  font-weight: bold;
+  font-weight: 300;
   text-align: center;
-  padding-bottom: 1.5em;
+  spacing: 24px;
+  padding-bottom: 2.5em;
 }
 
-.screen-shield-clock-time {
-  font-size: 72pt;
-  text-shadow: 0px 2px 2px rgba(0,0,0,0.4);
+.unlock-dialog-clock-time {
+  font-size: 64pt;
+  padding-top: 42px;
   font-feature-settings: "tnum";
 }
 
-.screen-shield-clock-date {
-  font-size: 28pt;
+.unlock-dialog-clock-date {
+  font-size: 16pt;
   font-weight: normal;
 }
 
-.screen-shield-notifications-container {
+.unlock-dialog-clock-hint {
+  font-weight: normal;
+  padding-top: 48px;
+}
+
+.unlock-dialog-notifications-container {
+  margin: 12px 0;
   spacing: 6px;
-  width: 30em;
+  width: 23em;
   background-color: transparent;
-  max-height: 500px;
   .summary-notification-stack-scrollview {
     padding-top: 0;
     padding-bottom: 0;
   }
 
   .notification,
-  .screen-shield-notification-source {
+  .unlock-dialog-notification-source {
     padding: 12px 6px;
     border: 1px solid $_bubble_borders_color;
     background-color: transparentize($osd_bg_color,0.5);
     color: $_bubble_fg_color;
     border-radius: 4px;
+
+    &.critical { background-color: transparentize($osd_bg_color,0.1) }
   }
-  .notification { margin-right: 15px; } //compensate for space allocated to the scrollbar
 }
 
-
-.screen-shield-notification-label {
-  font-weight: bold;
+.unlock-dialog-notification-label {
   padding: 0px 0px 0px 12px;
 }
 
-.screen-shield-notification-count-text { padding: 0px 0px 0px 12px; }
-
-#panel.lock-screen { background-color: transparentize($_bubble_bg_color, 0.5); }
+.unlock-dialog-notification-count-text {
+  font-weight: bold;
+  padding: 0px 12px;
+}
 
 .screen-shield-background { //just the shadow, really
   background: black;
@@ -2635,11 +2657,10 @@ StScrollBar {
 }
 
 #lockDialogGroup {
-  background: if($variant!='dark', darken($bg_color, 10%), darken($bg_color, 5%));
-  background-repeat: repeat;
+  background-color: if($variant!='dark', darken($bg_color, 10%), darken($bg_color, 5%));
 }
 
-#screenShieldNotifications {
+#unlockDialogNotifications {
   StButton#vhandle, StButton#hhandle {
     background-color: transparentize($bg_color,0.7);
     &:hover, &:focus { background-color: transparentize($bg_color,0.5); }
