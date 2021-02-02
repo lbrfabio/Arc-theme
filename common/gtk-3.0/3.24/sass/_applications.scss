@@ -69,9 +69,9 @@ terminal-window,
 
 // Pathbar for nautilus >=3.30
 .nautilus-window .path-bar-box {
-  background-color: lighten($header_bg, 5%);
   border-radius: 3px;
   border: 1px $header_button_border solid;
+  background-color: lighten($header_bg, 5%);
 }
 
 // path-bar buttons for nautilus 3.30
